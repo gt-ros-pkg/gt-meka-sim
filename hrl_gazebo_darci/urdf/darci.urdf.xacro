@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<robot name="Darci"  xmlns:xacro="http:www.ros.org/wiki/xacro">
+
+ <property name="M_PI" value="3.1415926535897931" />
+
+ 
+ <property name="MESH" value="hrl_gazebo_darci/urdf/meshes/mid_res" />
+ <property name="MESH_COLL" value="hrl_gazebo_darci/urdf/meshes/low_res" />
+
+<!-- simulator_gazebo plugins and tags for inclusion in sdf -->
+  <include filename="./gazebo/gazebo.urdf.xacro" />
+  <include filename="./gazebo/gazebo_joints.urdf.xacro" />
+  <include filename="./gazebo/gazebo_links.urdf.xacro" />
+
+<!-- Meka Base -->
+  <include filename="./B1R2B_defs.urdf.xacro" />
+
+<!-- Meka Zlift -->
+  <include filename="./Z1R2B_defs.urdf.xacro" />
+
+<!-- Meka Arm -->
+  <include filename="./A2R4_r_arm_defs.urdf.xacro" />
+  <include filename="./A2R4_l_arm_defs.urdf.xacro" />
+
+  <!-- john added transmissions -->
+  <include filename="./transmissions/A2R4_r_arm_defs.transmission.xacro" />
+  <include filename="./transmissions/A2R4_l_arm_defs.transmission.xacro" />
+  <include filename="./transmissions/zlift_defs.transmission.xacro" />
+
+  <link name="world" />
+    
+  <meka_base reflect="1" parent="world">
+    <origin xyz="0.0 0.0 0.02" rpy="0 0 0" />
+  </meka_base>
+
+  <meka_zlift  side="r" reflect="1" parent="dummy_3">
+    <origin xyz="0.42 0.0 0.6137" rpy="0 0 0" />
+  </meka_zlift>
+
+  <!-- Torso -->
+  <joint name="chest_joint" type="fixed">
+      <origin xyz="0.0 0.0 0.0"/>
+    <parent link="torso_lift_link" />
+    <child link="chest_link" />
+  </joint>
+
+  <link name="chest_link">
+	  <inertial>
+		  <mass value="10" />
+		  <origin xyz="0 0 -0.1" />
+          <inertia ixx="1E-4"
+                   iyy="1E-4"
+                   izz="1E-4"
+                   ixy="1E-7"
+                   ixz="1E-7"
+                   iyz="1E-7"/>
+	  </inertial>
+	  <visual>
+		  <origin xyz="0 0 -0.2337" rpy="0 0 0" />
+		  <geometry name="torso_lift_link_geom">
+			  <mesh filename="package://${MESH}/A2R3/A2R3_T4_Chest_Neck.dae" />
+		  </geometry>
+	  </visual>
+	  <collision>
+		  <origin xyz="0 0 -0.2337" rpy="0.0 0.0 0.0 " />
+		  <geometry name="torso_lift_link_collision_geom">
+			  <mesh filename="package://${MESH_COLL}/A2R3/A2R3_T4_Chest_Neck.stl" />
+		  </geometry>
+	  </collision>
+  </link>
+
+  <!-- Add Arms -->
+  <m3_r_arm side="r" reflect="1" parent="torso_lift_link">
+      <origin xyz="0.0 -0.18465 0." rpy="0.0 0.0 0.0" />
+  </m3_r_arm>
+ 
+  <m3_l_arm side="l" reflect="-1" parent="torso_lift_link">
+      <origin xyz="0.0 0.18465 0." rpy="0.0 0.0 0.0" />
+  </m3_l_arm>
+
+  <!-- john added transmissions -->
+  <m3_zlift_transmission name="torso_lift"/>
+  <m3_r_arm_transmission side="r" reflect="1" parent="torso_lift_link"/>
+  <m3_l_arm_transmission side="l" reflect="1" parent="torso_lift_link"/>
+
+</robot>
+  

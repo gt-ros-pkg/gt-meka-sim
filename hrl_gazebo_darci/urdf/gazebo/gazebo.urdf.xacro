@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<robot>
+  <gazebo refernce="darci">
+      <material>Gazebo/Grey</material>
+      <plugin name="ros_model_plugin" filename="libros_model_plugin.so" />
+      <static> false </static>
+  </gazebo>
+</robot>

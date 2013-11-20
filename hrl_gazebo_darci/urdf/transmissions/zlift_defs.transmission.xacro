@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<robot>
+
+  <macro name="m3_zlift_transmission" params="name">
+    <transmission type="pr2_mechanism_model/SimpleTransmission" name="${name}_t0">
+      <actuator name="${name}_a0" />
+      <joint name="${name}_joint" />
+      <mechanicalReduction>1</mechanicalReduction>
+    </transmission>
+  </macro>
+
+</robot>

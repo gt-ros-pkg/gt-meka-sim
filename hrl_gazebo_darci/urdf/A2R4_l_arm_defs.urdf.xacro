@@ -1,0 +1,374 @@
+<?xml version="1.0"?>
+<robot>
+  <property name="M_PI" value="3.1415926535897931" />
+
+  <macro name="m3_l_shoulder" params="side parent reflect *origin">
+    <!-- Shoulder pan -->
+    <joint name="left_arm_j0" type="revolute">
+      <axis xyz="0 -1 0" />
+      <insert_block name="origin" /> <!-- transform from parent link to this joint frame -->
+      <parent link="${parent}"/>
+      <child link="shoulderupper_LEFT"/>
+      <limit effort="40" velocity="4.6" lower="${-80.0*M_PI/180.0}" upper="${200.0*M_PI/180.0}" />
+      <dynamics damping="10.0" />
+    </joint>
+
+    <link name="shoulderupper_LEFT">
+      <inertial>
+        <mass value="1.9872"/>
+        <origin xyz="-0.00936788 -0.02395458 -2.088E-5"/>
+        <inertia ixx="0.00356692"
+                 iyy="0.00293838"
+                 izz="0.00527243"
+                 ixy="-0.00036869"
+                 ixz="-0.00000245"
+                 iyz="0.00000097" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="${M_PI} 0 0"/>
+        <geometry name="l_shoulder_geom">
+          <mesh filename="package://${MESH}/A2R3/A2R3_RT1_shoulderRoll.dae" />
+	    </geometry>  
+      </visual>
+      <collision name="shoulderupper_LEFT_collision">
+        <origin xyz="0 0 0" rpy="${M_PI} 0 0"/>
+	    <geometry name="l_shoulder_collision_geom">
+	      <mesh filename="package://${MESH_COLL}/A2R3/A2R3_RT1_shoulderRoll.stl" />
+	    </geometry>
+      </collision>
+    </link>
+
+    <!-- Shoulder Pitch -->
+    <joint name="left_arm_j1" type="revolute">
+      <axis xyz="-1 0 0"/>
+      <limit effort="40" velocity="4.6" upper="${25*M_PI/180}"  lower="${-150*M_PI/180}" />    
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="shoulderupper_LEFT"/>
+      <child link="shoulderpitch_LEFT"/>
+      <dynamics damping="10.0" />
+    </joint>
+
+    <link name="shoulderpitch_LEFT">
+      <inertial>
+        <mass value="0.5575" />
+        <origin xyz="0.00102576 0.02635544 -0.0430649" rpy="0 0 0"/>
+        <inertia ixx="0.00074999" 
+                 iyy="0.00091729"
+                 izz="0.0083104" 
+                 ixy="-0.00001075"
+                 ixz="0.00002945"
+                 iyz="-0.0001417"/>
+      </inertial>
+      <visual>
+	    <origin xyz="0 0 0" rpy="0 0 ${M_PI}" />
+	    <geometry name="l_shoulderpitch_RIGHT">
+	      <mesh filename="package://${MESH}/A2R3/A2R3_RT2_shoulderPitch.dae" />		      
+	    </geometry>  
+      </visual>
+      <collision name="shoulderpitch_LEFT_collision">
+	      <origin xyz="0 0 0" rpy="0.0 0.0 ${M_PI}" />
+	      <geometry name="shoulderpitch_LEFT_geom_collision">
+		      <mesh filename="package://${MESH_COLL}/A2R3/A2R3_RT2_shoulderPitch.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+ <!-- Upperarm roll: internal fixed attchment point for upper arm -->
+    <joint name="left_arm_j2" type="revolute">
+      <axis xyz="0 0 -1" />
+      <origin xyz="0 0.03175 -0.27857" rpy="0 0 0" />
+      <parent link="shoulderpitch_LEFT" />
+      <child link="bicep_LEFT"/>
+      <limit effort="20" velocity="4.5" lower="${-85*M_PI/180}" upper="${85*M_PI/180}" />    
+      <dynamics damping="10.0" />
+    </joint>
+
+    <link name="bicep_LEFT">
+      <inertial>
+        <mass value="2.22" />
+        <origin xyz="-0.008000832 -0.00267341 0.08765621" rpy="0 0 0" />
+        <inertia ixx="0.01203537"
+                 iyy="0.01227275"
+                 izz="0.00209411"
+                 ixy="0.00003201"
+                 ixz="-0.00057519"
+                 iyz="0.00007938"/>
+      </inertial>
+      <visual>
+	    <origin xyz="0 0 0" rpy="0 0 0 " />
+	    <geometry name="bicep_LEFT_geom">
+		  <mesh filename="package://${MESH}/A2R3/A2R3_LT3_bicep.dae" />
+	    </geometry>  
+      </visual>
+      <collision name="bicep_LEFT_collision">
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="bicep_LEFT_geom_collision">
+		      <mesh filename="package://${MESH_COLL}/A2R3/A2R3_LT3_bicep.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+  </macro>
+
+  <!-- ============================   Upper Arm   ============================ -->
+  <macro name="m3_l_upper_arm" params="side parent reflect">
+
+    <joint name="left_arm_j3" type="revolute">
+      <axis xyz="0 -1 0" />
+	  <origin xyz="0.00502 0  0" rpy="0 0 0" />
+      <parent link="${parent}"/>
+      <child link="elbowclevis_LEFT"/>
+      <limit effort="20" velocity="4.5" lower="${0.0*M_PI/180}" upper="${133*M_PI/180}" />   
+      <dynamics damping="5.0" />
+    </joint>
+
+    <link name="elbowclevis_LEFT">
+      <inertial>
+        <mass value="0.22" />
+        <origin xyz="0.0 -0.00080947 -0.02573092 "/>
+        <inertia ixx="0.00046386"
+                 iyy="0.00023071"
+                 izz="0.00041935"
+                 ixy="0.0"
+                 ixz="0.0"
+                 iyz="-0.00001793" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 ${M_PI} " />
+	    <geometry name="elbowclevis_LEFT_geom">
+		  <mesh filename="package://${MESH}/A2R3/A2R3_RT4_elbow.dae" />
+	    </geometry>  
+      </visual>
+      <collision name="elbowclevis_LEFT_collision">
+          <origin xyz="0 0 0" rpy="0.0 0.0 ${M_PI} " />
+	      <geometry name="elbowclevis_LEFT_geom_collision">
+		      <mesh filename="package://${MESH_COLL}/A2R3/A2R3_RT4_elbow.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+    <!-- Elbow flex -->
+    <joint name="left_arm_j4" type="revolute">
+	  <axis xyz="0 0 -1" />
+      <limit effort="4" velocity="2.0" lower="${-190.7*M_PI/180}" upper="${25*M_PI/180}" /> 
+      <origin xyz="0 0 -0.27747" rpy="0 0 0" />
+      <parent link="elbowclevis_LEFT"/>
+      <child link="wrist_LEFT"/>
+      <dynamics damping="2.0" />
+    </joint>
+
+    <link name="wrist_LEFT">
+      <inertial>
+        <mass value="1.7" />
+        <origin xyz="-0.00193731 -0.0002874 0.13853286" />
+        <inertia ixx="0.00637642"
+                 iyy="0.00632479"
+                 izz="0.00106585"
+                 ixy="-0.00000052"
+                 ixz="0.00000634"
+                 iyz="-0.00006565"/>
+      </inertial>
+      <visual>
+	    <origin xyz="0 0 0" rpy="0 0 0 " />
+	    <geometry name="wrist_LEFT_geom">
+	      <mesh filename="package://${MESH}/A2R3/A2R3_T5_forearmRoll.dae" />
+	    </geometry>  
+      </visual>
+      <collision name="wrist_LEFT_collision">
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="wrist_LEFT_geom_collision">
+		      <mesh filename="package://${MESH_COLL}/A2R3/A2R3_T5_forearmRoll.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+    <!-- Darci Sleeve -->
+    <joint name="wrist_forearmor_joint" type="fixed">
+        <origin xyz="0.0 0.0 0.226" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
+      <parent link="wrist_LEFT"/>
+      <child link="forearmor"/>
+    </joint>
+
+    <link name="forearmor">
+      <inertial>
+        <!-- mass, com, and I are all rough guess-timates -->
+        <origin xyz="0.0 0.0 -0.113" />
+        <mass value="0.5" />
+        <inertia ixx="0.0056125"
+                 iyy="0.0056125"
+                 izz="0.003725"
+                 ixy="1E-4"
+                 ixz="1E-5"
+                 iyz="1E-5" />
+      </inertial>
+      <visual>
+	    <origin xyz="0 0 0" rpy="0 0 0 " />
+	    <geometry name="wrist_LEFT_geom_forearmor">
+            <mesh filename="package://${MESH}/tactile_sensor/Darci_Forearmor.stl" />
+	    </geometry>  
+      </visual>
+      <collision name="forearmor_collision">
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="wrist_LEFT_geom_collision_forearmor_front">
+              <mesh filename="package://${MESH_COLL}/tactile_sensor/Darci_Forearmor.stl"/>
+	      </geometry>
+      </collision>
+    </link>
+    <!--END Darci Sleeve -->
+
+  </macro>
+
+  <!-- ============================   Forearm   ============================ -->
+  <macro name="m3_l_forearm" params="side parent reflect">
+
+    <joint name="left_arm_j5" type="revolute">
+      <axis xyz="0 -1 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="${parent}"/>
+      <child link="w_differential_LEFT"/>
+	  <limit effort="8" velocity="3.4" lower="${-60*M_PI/180}" upper="${60*M_PI/180}" /> 
+      <dynamics damping="1.0" />
+    </joint>
+
+    <link name="w_differential_LEFT">
+      <inertial>
+        <mass value="0.212" />
+        <origin xyz="-0.00183795 0.0018201 -8.772E-5" />
+        <inertia ixx="0.0001092"
+                 iyy="0.00007173"
+                 izz="0.00011046"
+                 ixy="0.00000081"
+                 ixz="0.00000007"
+                 iyz="0.00000004"/>
+      </inertial>
+      <visual>
+	    <origin xyz="0 0 0" rpy="0 0 0 " />
+	    <geometry name="w_differential_LEFT_geom">
+	      <mesh filename="package://${MESH}/A2R3/A2R3_T6_wristDiff.dae" />
+	    </geometry>  
+      </visual>
+      <collision name="w_differential_LEFT_collision">
+	    <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	    <geometry name="w_differential_LEFT_geom_collision">
+	      <box size="0.01 0.01 0.01" />
+	    </geometry>
+      </collision>
+    </link>
+
+  <!-- Wrist flex -->
+    <joint name="left_arm_j6" type="revolute">
+	    <axis xyz="-1 0 0" />
+      <limit effort="8" velocity="3.4" lower="${-60*M_PI/180}" upper="${60*M_PI/180}" /> 
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="w_differential_LEFT"/>
+      <child link="handmount_LEFT"/>
+      <dynamics damping="1.0" />
+    </joint>
+    
+    <link name="handmount_LEFT">
+      <inertial>
+        <mass value="0.084" />
+        <origin xyz="-0.00292 -3.0E-5 -0.01092" />
+        <inertia ixx="4.30537E-5"
+                 iyy="8.64045E-5"
+                 izz="6.14459E-5"
+                 ixy="-4.351E-8"
+                 ixz="-1.49262E-8" 
+                 iyz="8.517E-8"/>
+      </inertial>
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="handmount_LEFT_geom">
+		       <mesh filename="package://${MESH}/A2R3/A2R3_T7_wristYaw.dae" />
+	      </geometry>  
+      </visual>
+      <collision name="handmount_LEFT_collision">
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="handmount_LEFT_geom_collision">
+		      <mesh filename="package://${MESH_COLL}/A2R3/A2R3_T7_wristYaw.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+    <joint name="handmount_ft_joint" type="fixed">
+        <origin xyz="0.0 0.0 -0.05125" rpy="0 0 0" />
+      <parent link="handmount_LEFT"/>
+      <child link="handmount_FT_LEFT"/>
+    </joint>
+
+    <link name="handmount_FT_LEFT" >
+      <inertial>
+        <origin xyz="0.0 0.0 0.0" />
+        <mass value="0.0499" />
+        <inertia ixx="3.3838E-6"
+                 iyy="3.3838E-6"
+                 izz="1E-7"
+                 ixy="0"
+                 ixz="0"
+                 iyz="0" />
+      </inertial>
+      <visual>
+	    <origin xyz="0 0 0.0" rpy="0 0 0 " />
+        <geometry>
+            <cylinder radius="0.02" length="0.0125" />
+        </geometry>
+      </visual>
+      <collision>
+	    <origin xyz="0 0 0.0" rpy="0 0 0 " />
+        <geometry>
+            <cylinder radius="0.02" length="0.0125" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="handmount_flipper_joint" type="fixed">
+        <origin xyz="0.0 0.0 -0.075" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
+      <parent link="handmount_FT_LEFT"/>
+      <child link="flipper"/>
+    </joint>
+
+    <link name="flipper">
+      <inertial>
+        <!-- mass, com, inertia are all rough guess-timates -->
+        <origin xyz="0.0 0.0 0.0" />
+        <mass value="0.75" />
+        <inertia ixx="0.02925"
+                 iyy="0.02925"
+                 izz="0.00225"
+                 ixy="1E-4"
+                 ixz="1E-4"
+                 iyz="1E-6" />
+      </inertial>
+      <visual>
+	    <origin xyz="0 0 0" rpy="0 0 0 " />
+	    <geometry name="flipper_geom">
+            <mesh filename="package://${MESH}/tactile_sensor/Darci_Flipper.stl"/>
+        </geometry>  
+      </visual>
+      <collision name="flipper_collision">
+	    <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	    <geometry name="wrist_LEFT_geom_collision_forearmor_front">
+            <mesh filename="package://${MESH_COLL}/tactile_sensor/Darci_Flipper.stl"/>
+	    </geometry>
+      </collision>
+    </link>
+
+    <joint name="handmount_flipper_tip_joint" type="fixed">
+        <origin xyz="0.0 0.0 -0.215" rpy="0 ${M_PI/2} 0" />
+      <parent link="handmount_FT_LEFT"/>
+      <child link="l_flipper_tip_frame"/>
+    </joint>
+
+    <link name="l_flipper_tip_frame" />
+
+  </macro>
+
+  <macro name="m3_l_arm" params="side parent reflect *origin">
+    <m3_l_shoulder side="${side}" reflect="${reflect}" parent="${parent}">
+      <insert_block name="origin" />
+    </m3_l_shoulder>
+    <m3_l_upper_arm side="${side}" reflect="${reflect}" parent="bicep_LEFT" />
+    <m3_l_forearm side="${side}" reflect="${reflect}" parent="wrist_LEFT" />
+  </macro>
+
+</robot>

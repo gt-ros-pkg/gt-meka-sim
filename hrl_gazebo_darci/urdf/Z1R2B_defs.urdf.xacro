@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot>
+
+  <property name="M_PI" value="3.1415926535897931" />
+
+  <macro name="meka_zlift" params="side parent reflect *origin">
+
+    <!-- Shoulder pan -->
+    <joint name="torso_lift_joint" type="prismatic">
+      <axis xyz="0 0 1" />
+      <insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="torso_lift_link"/>
+      <!-- torso_lift limit values are purely invented -->
+      <limit lower="0.0"  upper="0.7" velocity="0.2" effort="2000.0"/>
+      <dynamics damping="100.0" />
+    </joint>
+    
+    <link name="torso_lift_link">
+      <inertial>
+        <mass value="5.799322" />
+        <origin xyz="0.0 0.0 -0.10" rpy="0 0 0"/>
+        <inertia ixx="0.206179142480"  ixy="-0.006086507933"  ixz="-0.01118061183"
+                 iyy="0.20421714893"  iyz="-0.005886609911"
+                 izz="0.05353821674" />
+      </inertial>
+      <visual>
+	      <origin xyz="0 0 -0.1937" rpy="0 0 0 " />
+	      <geometry name="torso_lift_geom">
+		      <mesh filename="package://${MESH}/B1R1/MB1_00_011_festo-chest_mount_assy+spacer.dae" />
+	      </geometry>  
+      </visual>
+      <collision>
+	      <origin xyz="0 0 -0.1937" rpy="0.0 0.0 0.0 " />
+	      <geometry name="torso_lift_geom_collision_geom">
+		      <mesh filename="package://${MESH_COLL}/B1R1/MB1_00_011_festo-chest_mount_assy+spacer.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+  </macro>
+
+
+</robot>

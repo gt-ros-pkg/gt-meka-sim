@@ -1,0 +1,87 @@
+r_arm_controller:
+  type: "robot_mechanism_controllers/JointTrajectoryActionController"
+  joints:
+    - right_arm_j0
+    - right_arm_j1
+    - right_arm_j2
+    - right_arm_j3
+    - right_arm_j4
+    - right_arm_j5
+    - right_arm_j6
+  gains:
+    right_arm_j0: {p: 43, d: 2.58, i: 0, i_clamp: 0}
+    right_arm_j1: {p: 43, d: 4.30, i: 0, i_clamp: 0}
+    right_arm_j2: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+    right_arm_j3: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+    right_arm_j4: {p: 2.58, d: 0.6446, i: 0, i_clamp: 0}
+    right_arm_j5: {p: 3.44, d: 0.086, i: 0, i_clamp: 0}
+    right_arm_j6: {p: 3.44, d: 0.086, i: 0, i_clamp: 0}
+  joint_trajectory_action_node:
+    joints:
+      - right_arm_j0
+      - right_arm_j1
+      - right_arm_j2
+      - right_arm_j3
+      - right_arm_j4
+      - right_arm_j5
+      - right_arm_j6
+    constraints:
+      goal_time: 0.6
+      right_arm_j0:
+        goal: 0.02
+      right_arm_j1:
+        goal: 0.02
+      right_arm_j2:
+        goal: 0.02
+      right_arm_j3:
+        goal: 0.02
+      right_arm_j4:
+        goal: 0.02
+      right_arm_j5:
+        goal: 0.02
+      right_arm_j6:
+        goal: 0.02
+
+l_arm_controller:
+  type: "robot_mechanism_controllers/JointTrajectoryActionController"
+  joints:
+    - left_arm_j0
+    - left_arm_j1
+    - left_arm_j2
+    - left_arm_j3
+    - left_arm_j4
+    - left_arm_j5
+    - left_arm_j6
+  gains:
+    left_arm_j0: {p: 350, d: 14.30, i: 0, i_clamp: 0}
+    left_arm_j1: {p: 240, d: 6.30, i: 0, i_clamp: 0}
+    left_arm_j2: {p: 210, d: 3.58, i: 0, i_clamp: 0}
+    left_arm_j3: {p: 100, d: 0.6446, i: 0, i_clamp: 0}
+    left_arm_j4: {p: 45, d: 0.6446, i: 0, i_clamp: 0}
+    left_arm_j5: {p: 20, d: 0.086, i: 0, i_clamp: 0}
+    left_arm_j6: {p: 20, d: 0.086, i: 0, i_clamp: 0}
+  joint_trajectory_action_node:
+    joints:
+      - left_arm_j0
+      - left_arm_j1
+      - left_arm_j2
+      - left_arm_j3
+      - left_arm_j4
+      - left_arm_j5
+      - left_arm_j6
+    constraints:
+      goal_time: 0.6
+      left_arm_j0:
+        goal: 0.02
+      left_arm_j1:
+        goal: 0.02
+      left_arm_j2:
+        goal: 0.02
+      left_arm_j3:
+        goal: 0.02
+      left_arm_j4:
+        goal: 0.02
+      left_arm_j5:
+        goal: 0.02
+      left_arm_j6:
+        goal: 0.02

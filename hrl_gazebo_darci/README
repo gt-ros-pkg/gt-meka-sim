@@ -1,0 +1,28 @@
+# Quick installation list
+. Install new gazebo 1.8.7+ (via mercurial checkout, see gazebosim.org)
+  -- need urdf parser support (check cmake output when building)
+. run ./generate_sdf_from_urdf (creates urdf, sdf files from xacro)
+. Create a symlink at /home/$USER/.gazebo/models/darci which points to hrl_gazebo_darci/sdf/
+. Install plugins (hrl_gazebo_plugin_world, hrl_gazebo_plugin_model, hrl_gazebo_plugin_tactile)
+  -- Installed location may not work with gazebo >= 1.9
+. Install pr2_controller_configuration_gazebo
+  --which includes libpr2_controller_manager (for joint_trajectory_controller)
+  -- This does not reflect the controller API on real meka robots
+. Run ./start_darci.sh (loads urdf to robot_description param, starts gazebo w/darci, then starts controllers, and sets torso position)
+
+
+# Notable differences from meka_description URDF -- List may be inaccurate or incomplete, but is all I can remember changing
+. Many mass/inertia values have been changed to match the dynamatics files and Jeff Bingham's corrected Inertia Matrices
+. The 'zlift_link' has been removed and replaced with 'torso_lift_link' (same visual/collision/inertia elements)
+    - The 'torso_lift_link' is centered between the shoulder joints
+. The 'upper' link has been removed and replaced with 'chest_link' (same visual/collision/inertia elements)
+    - The 'upper' link has a fixed joint with identity transformation from 'torso_lift_link' (only difference is in the models attached to each)
+. 'forearmor' and 'flipper' links have been added to the left arm to represent our tactile sening cover.
+. 'handmount_FT_LEFT' link, with cylindrical visual/collision/inertia has been added to the left hand to represent the ATI mini40 F/T sensor on the hand.  The model should be accurate to the mounting and specs from ATI for that sensor, but may or may not be on your robot
+. No meshes or URDF contend has been included for hands, head, or 2-part torso (not present on Darci)
+    - These meshes and original URDF contents should be available in meka_description, and can be incorporated
+. The world->base joints have been changed to fixed (but original p-p-r joint parameters are still present, if you switch back)
+
+. All URDF materials were removed as these are incompatible with Gazebo materials
+. Inertia elements were added for some links, as this is required for conversion to sdf
+. Many sdf-only parameters are set in 'gazebo' tags, located in the urdf/gazebo folder.  These are ignored in URDF, and incorporated in SDF during conversion
