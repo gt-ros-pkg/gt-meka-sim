@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<!--  <macro name="surface_properties" params="link_name">
+<!--macro name="surface_properties" params="link_name">
     ##Example properties taken from Daehyung's pr2 contact params 
     <gazebo reference="${link_name}_collision">
       <surface>
@@ -30,20 +30,36 @@
   <macro name="non_tactile_surface" params="link_name">
     <gazebo reference="${link_name}">
       <gravity>false</gravity>
-      <!--      <mu1>0.01</mu1>
+      <mu1>0.01</mu1>
       <mu2>0.01</mu2>
-      <kp>1E5</kp>
-      <kd>10</kd>-->
     </gazebo>
   </macro>
 
-  <macro name="tactile_surface" params="link_name parent_link_name">
+  <macro name="tactile_surface" params="link_name">
     <gazebo reference="${link_name}">
       <gravity>false</gravity>
-      <!--      <mu1>0.01</mu1>
+      <mu1>0.01</mu1>
+      <mu2>0.01</mu2>
+      <sensor name="${link_name}_tactile_sensor" type="contact">
+        <contact>
+          <collision>${link_name}_collision</collision>
+          <topic>__default_topic__</topic>
+        </contact>
+        <plugin name="ros_tactile_plugin_${link_name}" filename="libros_tactile_plugin.so" />
+        <always_on>1</always_on>
+        <update_rate>30.0</update_rate>
+        <visualize>false</visualize>
+      </sensor>
+    </gazebo>
+  </macro>
+
+  <!--  <macro name="tactile_surface_extended" params="link_name parent_link_name">
+    <gazebo reference="${link_name}">
+      <gravity>false</gravity>
+      <-      <mu1>0.01</mu1>
       <mu2>0.01</mu2>
       <kp>1E5</kp>
-      <kd>10</kd>-->
+      <kd>10</kd>->
       <sensor name="${link_name}_tactile_sensor" type="contact">
         <contact>
           <collision>${parent_link_name}_collision_${link_name}</collision>
@@ -55,7 +71,7 @@
         <visualize>false</visualize>
       </sensor>
     </gazebo>
-  </macro>
+</macro>-->
 
 
   <!-- BEGIN LEFT ARM -->
@@ -67,17 +83,19 @@
 
   <non_tactile_surface link_name="elbowclevis_LEFT"/>
 
-  <non_tactile_surface link_name="wrist_LEFT"/>
-
-  <tactile_surface link_name="forearmor" parent_link_name="wrist_LEFT"/>
+  <!--surface_properties link_name="wrist_LEFT"/-->
+  <tactile_surface link_name="wrist_LEFT"/>
+  <!--tactile_surface link_name="forearmor" parent_link_name="wrist_LEFT"/-->
 
   <non_tactile_surface link_name="w_differential_LEFT"/>
 
-  <non_tactile_surface link_name="handmount_LEFT"/>
+  <tactile_surface link_name="handmount_LEFT"/>
 
   <non_tactile_surface link_name="handmount_FT_LEFT"/>
 
-  <tactile_surface link_name="flipper" parent_link_name="handmount_LEFT"/>
+  <non_tactile_surface link_name="flipper"/>
+  <!--tactile_surface_extended link_name="flipper" parent_link_name="handmount_LEFT"/-->
+  <!--surface_properties_extended link_name="flipper" parent_link_name="handmount_LEFT"/-->
 
   <!-- END LEFT ARM -->
 

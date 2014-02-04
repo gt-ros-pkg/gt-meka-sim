@@ -54,7 +54,7 @@
         <origin xyz="0.00102576 0.02635544 -0.0430649" rpy="0 0 0"/>
         <inertia ixx="0.00074999" 
                  iyy="0.00091729"
-                 izz="0.0083104" 
+                 izz="0.00083104" 
                  ixy="-0.00001075"
                  ixz="0.00002945"
                  iyz="-0.0001417"/>
@@ -177,40 +177,7 @@
       <collision name="wrist_LEFT_collision">
 	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
 	      <geometry name="wrist_LEFT_geom_collision">
-		      <mesh filename="package://${MESH_COLL}/A2R3/A2R3_T5_forearmRoll.stl" />
-	      </geometry>
-      </collision>
-    </link>
-
-    <!-- Darci Sleeve -->
-    <joint name="wrist_forearmor_joint" type="fixed">
-        <origin xyz="0.0 0.0 0.226" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
-      <parent link="wrist_LEFT"/>
-      <child link="forearmor"/>
-    </joint>
-
-    <link name="forearmor">
-      <inertial>
-        <!-- mass, com, and I are all rough guess-timates -->
-        <origin xyz="0.0 0.0 -0.113" />
-        <mass value="0.5" />
-        <inertia ixx="0.0056125"
-                 iyy="0.0056125"
-                 izz="0.003725"
-                 ixy="1E-4"
-                 ixz="1E-5"
-                 iyz="1E-5" />
-      </inertial>
-      <visual>
-	    <origin xyz="0 0 0" rpy="0 0 0 " />
-	    <geometry name="wrist_LEFT_geom_forearmor">
-            <mesh filename="package://${MESH}/tactile_sensor/Darci_Forearmor.stl" />
-	    </geometry>  
-      </visual>
-      <collision name="forearmor_collision">
-	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
-	      <geometry name="wrist_LEFT_geom_collision_forearmor_front">
-              <mesh filename="package://${MESH_COLL}/tactile_sensor/Darci_Forearmor.stl"/>
+		      <mesh filename="package://${MESH_COLL}/A2R3/A2R3_T5_forearmRoll_coll.stl" />
 	      </geometry>
       </collision>
     </link>
@@ -285,7 +252,8 @@
       <collision name="handmount_LEFT_collision">
 	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
 	      <geometry name="handmount_LEFT_geom_collision">
-		      <mesh filename="package://${MESH_COLL}/A2R3/A2R3_T7_wristYaw.stl" />
+		      <!--mesh filename="package://${MESH_COLL}/A2R3/A2R3_T7_wristYaw.stl" /-->
+                      <mesh filename="package://${MESH_COLL}/tactile_sensor/new_handmount_LEFT.stl"  scale="0.001 0.001 0.001"/>
 	      </geometry>
       </collision>
     </link>
@@ -297,6 +265,7 @@
     </joint>
 
     <link name="handmount_FT_LEFT" >
+      <!-- values from data spec for ATI Mini40 sensor (read: should be fairly accurate)-->
       <inertial>
         <origin xyz="0.0 0.0 0.0" />
         <mass value="0.0499" />
@@ -313,53 +282,62 @@
             <cylinder radius="0.02" length="0.0125" />
         </geometry>
       </visual>
-      <collision>
+      <!--collision>
 	    <origin xyz="0 0 0.0" rpy="0 0 0 " />
         <geometry>
             <cylinder radius="0.02" length="0.0125" />
         </geometry>
-      </collision>
+      </collision-->
     </link>
 
     <joint name="handmount_flipper_joint" type="fixed">
-        <origin xyz="0.0 0.0 -0.075" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
+        <origin xyz="0.0 0.0 0.0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
       <parent link="handmount_FT_LEFT"/>
       <child link="flipper"/>
     </joint>
 
+    <!-- mass, com, inertia are all rough guess-timates -->
     <link name="flipper">
       <inertial>
-        <!-- mass, com, inertia are all rough guess-timates -->
-        <origin xyz="0.0 0.0 0.0" />
-        <mass value="0.75" />
-        <inertia ixx="0.02925"
-                 iyy="0.02925"
-                 izz="0.00225"
-                 ixy="1E-4"
-                 ixz="1E-4"
-                 iyz="1E-6" />
+          <origin xyz="0.0 0.07 0.0"/>
+        <mass value="0.18"/>
+        <inertia ixx="0.00033755" ixy="0" ixz="0" iyy="0.00033755" iyz="0" izz="0.0001202"/>
       </inertial>
+
       <visual>
-	    <origin xyz="0 0 0" rpy="0 0 0 " />
-	    <geometry name="flipper_geom">
-            <mesh filename="package://${MESH}/tactile_sensor/Darci_Flipper.stl"/>
-        </geometry>  
+        <origin rpy="0 0 0 " xyz="0 0 0"/>
+        <geometry name="flipper_geom">
+          <mesh filename="package://${MESH}/tactile_sensor/ee_simple.STL" scale="0.0009 0.00078 0.00085"/>
+        </geometry>
+        <material name="white">
+          <color rgba="1 1 1 1"/>
+        </material>
       </visual>
-      <collision name="flipper_collision">
-	    <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
-	    <geometry name="wrist_LEFT_geom_collision_forearmor_front">
-            <mesh filename="package://${MESH_COLL}/tactile_sensor/Darci_Flipper.stl"/>
-	    </geometry>
-      </collision>
+      <!--collision name="flipper_collision">
+        <origin rpy="0.0 0.0 0.0 " xyz="0 0 0"/>
+        <geometry name="flipper_geom_collision">
+          <mesh filename="package://${MESH_COLL}/tactile_sensor/ee_simple.STL" scale="0.0009 0.00078 0.0009"/>
+        </geometry>
+      </collision-->
     </link>
 
-    <joint name="handmount_flipper_tip_joint" type="fixed">
-        <origin xyz="0.0 0.0 -0.215" rpy="0 ${M_PI/2} 0" />
-      <parent link="handmount_FT_LEFT"/>
-      <child link="l_flipper_tip_frame"/>
+    <joint name="left_arm_ee" type="fixed">
+      <origin xyz="0 0 -0.17" rpy="-1.570796 0 0" />
+      <!--origin xyz="0 0 -0.19" rpy="-1.570796 0 0" /-->
+      <parent link="handmount_LEFT"/>
+      <child link="end_effector_LEFT"/>
     </joint>
+    <link name="end_effector_LEFT">
+        <!--<inertial>
+        <mass value="0.093" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.0" ixy="0.0" ixz="0.0"
+                 iyy="0.0" iyz="-0.0"
+                 izz="0.0" />
+         </inertial>-->
+    </link>
 
-    <link name="l_flipper_tip_frame" />
+
 
   </macro>
 
