@@ -13,20 +13,21 @@ link_directories(${GAZEBO_LIBRARY_DIRS})
 include(cmake/rospack.cmake)
 
 get_rospack_flags(roscpp)
-get_rospack_flags(rosgraph_msgs)
-get_rospack_flags(hrl_haptic_manipulation_in_clutter_msgs)
-get_rospack_flags(hrl_haptic_manipulation_in_clutter_srvs)
+get_rospack_flags(pr2_hardware_interface)
+get_rospack_flags(pr2_controller_manager)
+get_rospack_flags(pr2_gazebo_plugins)
+get_rospack_flags(pr2_mechanism_model)
 
+include_directories(${roscpp_INCLUDE_DIRS} ${pr2_hardware_interface_INCLUDE_DIRS} ${pr2_controller_manager_INCLUDE_DIRS} ${pr2_gazebo_plugins_INCLUDE_DIRS} ${pr2_mechanism_model_INCLUDE_DIRS})
+link_directories(${roscpp_LIBRARY_DIRS} ${pr2_hardware_interface_LIBRARY_DIRS} ${pr2_controller_manager_LIBRARY_DIRS} ${pr2_gazebo_plugins_LIBRARY_DIRS} ${pr2_mechanism_model_LIBRARY_DIRS})
 
 include_directories(${roscpp_INCLUDE_DIRS}  ${rosgraph_msgs_INCLUDE_DIRS} ${hrl_haptic_manipulation_in_clutter_msgs_INCLUDE_DIRS} ${hrl_haptic_manipulation_in_clutter_srvs_INCLUDE_DIRS})
 link_directories(${roscpp_LIBRARY_DIRS} ${rosgraph_msgs_LIBRARY_DIRS} ${hrl_haptic_manipulation_in_clutter_msgs_LIBRARY_DIRS} ${hrl_haptic_manipulation_in_clutter_srvs_LIBRARY_DIRS})
 set(CMAKE_INSTALL_RPATH "${roscpp_LIBRARY_DIRS}")
+add_library(ros_model_plugin SHARED ros_model_plugin.cc)
 
-add_library(ros_world_plugin SHARED ros_world_plugin.cc)
-#add_library(ros_world_plugin SHARED ros_clutter_world_plugin.cc)
-
-set_target_properties(ros_world_plugin PROPERTIES COMPILE_FLAGS "${roscpp_CFLAGS_OTHER}" COMPILE_FLAGS "${rosgraph_msgs_CFLAGS_OTHER}" COMPILE_FLAGS "${hrl_haptic_manipulation_in_clutter_msgs_CFLAGS_OTHER}" COMPILE_FLAGS "${hrl_haptic_manipulation_in_clutter_srvs_CFLAGS_OTHER}")
-set_target_properties(ros_world_plugin PROPERTIES LINK_FLAGS "${roscpp_LDFLAGS_OTHER}" LINK_FLAGS "${rosgraph_msgs_LDFLAGS_OTHER}" LINK_FLAGS "${hrl_haptic_manipulation_in_clutter_msgs_LDFLAGS_OTHER}" LINK_FLAGS "${hrl_haptic_manipulation_in_clutter_srvs_LDFLAGS_OTHER}")
-target_link_libraries(ros_world_plugin ${roscpp_LIBRARIES} ${rosgraph_msgs_LIBRARIES} ${hrl_haptic_manipulation_in_clutter_msgs_LIBRARIES} ${hrl_haptic_manipulation_in_clutter_srvs_LIBRARIES} ${GAZEBO_libraries})
-install (TARGETS ros_world_plugin DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/gazebo_plugins/)
+set_target_properties(ros_model_plugin PROPERTIES COMPILE_FLAGS "${roscpp_CFLAGS_OTHER}" COMPILE_FLAGS "${pr2_hardware_interface_CFLAGS_OTHER}" COMPILE_FLAGS "${pr2_controller_manager_CFLAGS_OTHER}" COMPILE_FLAGS "${pr2_gazebo_plugins_CFLAGS_OTHER}" COMPILE_FLAGS "${pr2_mechanism_model_CFLAGS_OTHER}")
+set_target_properties(ros_model_plugin PROPERTIES LINK_FLAGS "${roscpp_LDFLAGS_OTHER}" LINK_FLAGS "${pr2_controller_manager_LDFLAGS_OTHER}")
+target_link_libraries(ros_model_plugin ${roscpp_LIBRARIES} ${pr2_hardware_interface_LIBRARIES} ${pr2_controller_manager_LIBRARIES} ${pr2_gazebo_plugins_LIBRARIES} ${pr2_mechanism_model_LIBRARIES} pr2_controller_manager)
+install (TARGETS ros_model_plugin DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/gazebo_plugins/)
 
