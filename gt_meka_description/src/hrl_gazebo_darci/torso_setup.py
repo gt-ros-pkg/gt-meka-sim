@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import roslib; roslib.load_manifest('hrl_gazebo_darci')
+import roslib; roslib.load_manifest('gt_meka_description')
 import rospy
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from pr2_controllers_msgs.msg import JointTrajectoryControllerState

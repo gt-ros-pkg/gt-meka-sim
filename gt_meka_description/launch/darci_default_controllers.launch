@@ -3,19 +3,19 @@
   <include file="$(find pr2_controller_manager)/controller_manager.launch" />
 
   <!-- Torso -->
-  <rosparam command="load" file="$(find hrl_gazebo_darci)/yaml/darci_torso_controller.yaml" />
+  <rosparam command="load" file="$(find gt_meka_description)/yaml/darci_torso_controller.yaml" />
   <!-- Controllers that come up started -->
   <node name="darci_torso_controller_spawner"
         pkg="pr2_controller_manager" type="spawner" output="screen"
         args="torso_controller " />
 
-  <rosparam command="load" file="$(find hrl_gazebo_darci)/yaml/darci_arm_controllers.yaml" />
+  <rosparam command="load" file="$(find gt_meka_description)/yaml/darci_arm_controllers.yaml" />
   <!-- Controllers that come up started -->
   <node name="darci_arm_controllers_spawner"
         pkg="pr2_controller_manager" type="spawner" output="screen"
         args="r_arm_controller l_arm_controller " />
 
-  <node name="torso_sim_setup" pkg="hrl_gazebo_darci" type="torso_setup.py" output="screen" />
+  <node name="torso_sim_setup" pkg="gt_meka_description" type="torso_setup.py" output="screen" />
   <!--  <node pkg="tf" 
         type="static_transform_publisher" 
         name="torso_lift_link_broadcaster" 

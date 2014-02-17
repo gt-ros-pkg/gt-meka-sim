@@ -2,7 +2,7 @@
 -- Install new gazebo 1.8.7+ (via mercurial checkout, see gazebosim.org)
   -- need urdf parser support (check cmake output when building)
 -- run ./generate_sdf_from_urdf.sh (creates urdf, sdf files from xacro)
--- Create a symlink at /home/$USER/.gazebo/models/darci which points to hrl_gazebo_darci/sdf/
+-- Create a symlink at /home/$USER/.gazebo/models/darci which points to gt_meka_description/sdf/
 -- Install plugins (hrl_gazebo_plugin_world, hrl_gazebo_plugin_model, hrl_gazebo_plugin_tactile)
   -- Installed location may not work with gazebo >= 1.9
 . Install pr2_controller_configuration_gazebo

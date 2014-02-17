@@ -4,8 +4,8 @@
  <property name="M_PI" value="3.1415926535897931" />
 
  
- <property name="MESH" value="hrl_gazebo_darci/urdf/meshes/mid_res" />
- <property name="MESH_COLL" value="hrl_gazebo_darci/urdf/meshes/low_res" />
+ <property name="MESH" value="gt_meka_description/urdf/meshes/mid_res" />
+ <property name="MESH_COLL" value="gt_meka_description/urdf/meshes/low_res" />
 
 <!-- simulator_gazebo plugins and tags for inclusion in sdf -->
   <include filename="./gazebo/gazebo.urdf.xacro" />

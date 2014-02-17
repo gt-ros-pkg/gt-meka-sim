@@ -2,7 +2,7 @@
   <param name="/use_sim_time" value="true" />
 
   <!-- send robot description urdf to param server -->
-  <param name="robot_description" command="$(find xacro)/xacro.py '$(find hrl_gazebo_darci)/urdf/darci.urdf.xacro'" />
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find gt_meka_description)/urdf/darci.urdf.xacro'" />
 
 </launch>
 

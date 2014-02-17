@@ -1,0 +1,17 @@
+<package>
+  <description brief="gt_meka_description">
+
+   This package contains modified files from the Meka Robotics' meka_description package for simulating the Meka M1 mobile manipulator using gazebo, adapted to more accurately reflect the Meka M1 robots being used at the Georgia Institute of Technology. 
+
+  </description>
+  <author>Phillip Grice and Daehyung Park, Healthcare Robotics Lab, Georgia Institute of Technology.  Advisor: Charles Kemp.</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/gt_meka_description</url>
+  <depend package="rospy"/>
+  <depend package="trajectory_msgs"/>
+  <depend package="pr2_controllers_msgs"/>
+
+</package>
+
+
