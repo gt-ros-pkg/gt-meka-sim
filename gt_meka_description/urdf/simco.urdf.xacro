@@ -9,8 +9,10 @@
 
 <!-- simulator_gazebo plugins and tags for inclusion in sdf -->
   <include filename="./gazebo/gazebo.urdf.xacro" />
-  <include filename="./gazebo/gazebo_joints.urdf.xacro" />
-  <include filename="./gazebo/gazebo_links.urdf.xacro" />
+
+  <!-- Additional gazebo files added for creating tactile sensors on some links for HRL -->
+  <!--  <include filename="./gazebo/gazebo_joints.urdf.xacro" />
+  <include filename="./gazebo/gazebo_links.urdf.xacro" />-->
 
 <!-- Meka Base -->
   <include filename="./B1R2B_defs.urdf.xacro" />
@@ -21,9 +23,6 @@
 <!-- Meka Arm -->
   <include filename="./A2R4_r_arm_defs.urdf.xacro" />
   <include filename="./A2R4_l_arm_defs.urdf.xacro" />
-
-<!-- HRL End Effector -->
-  <include filename="./HRL_EE_Left.urdf.xacro" />
 
   <!-- john added transmissions -->
   <include filename="./transmissions/A2R4_r_arm_defs.transmission.xacro" />
@@ -80,10 +79,6 @@
   <m3_l_arm side="l" reflect="-1" parent="torso_lift_link">
       <origin xyz="0.0 0.18465 0." rpy="0.0 0.0 0.0" />
   </m3_l_arm>
-
-  <HRL_EE_Left side="l" reflect="-1" parent="handmount_LEFT">
-      <origin xyz="0.0 0.0 -0.05125" rpy="0 0 0" />
-  </HRL_EE_Left>
 
   <!-- john added transmissions -->
   <m3_zlift_transmission name="torso_lift"/>

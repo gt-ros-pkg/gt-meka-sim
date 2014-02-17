@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<robot>
+  <property name="M_PI" value="3.1415926535897931" />
+
+  <macro name="HRL_EE_Left" params="side parent reflect *origin">
+    <joint name="handmount_ft_joint" type="fixed">
+      <insert_block name="origin" /> <!-- transform from parent link to this joint frame -->
+      <parent link="${parent}"/>
+      <!--  <origin xyz="0.0 0.0 -0.05125" rpy="0 0 0" />
+      <parent link="handmount_LEFT"/>-->
+      <child link="handmount_FT_LEFT"/>
+    </joint>
+
+    <link name="handmount_FT_LEFT" >
+      <!-- values from data spec for ATI Mini40 sensor (read: should be fairly accurate)-->
+      <inertial>
+        <origin xyz="0.0 0.0 0.0" />
+        <mass value="0.0499" />
+        <inertia ixx="3.3838E-6"
+                 iyy="3.3838E-6"
+                 izz="1E-7"
+                 ixy="0"
+                 ixz="0"
+                 iyz="0" />
+      </inertial>
+      <visual>
+	    <origin xyz="0 0 0.0" rpy="0 0 0 " />
+        <geometry>
+            <cylinder radius="0.02" length="0.0125" />
+        </geometry>
+      </visual>
+      <!--collision>
+	    <origin xyz="0 0 0.0" rpy="0 0 0 " />
+        <geometry>
+            <cylinder radius="0.02" length="0.0125" />
+        </geometry>
+      </collision-->
+    </link>
+
+    <joint name="handmount_flipper_joint" type="fixed">
+        <origin xyz="0.0 0.0 0.0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
+      <parent link="handmount_FT_LEFT"/>
+      <child link="flipper"/>
+    </joint>
+
+    <!-- mass, com, inertia are all rough guess-timates -->
+    <link name="flipper">
+      <inertial>
+          <origin xyz="0.0 0.07 0.0"/>
+        <mass value="0.18"/>
+        <inertia ixx="0.00033755" ixy="0" ixz="0" iyy="0.00033755" iyz="0" izz="0.0001202"/>
+      </inertial>
+
+      <visual>
+        <origin rpy="0 0 0 " xyz="0 0 0"/>
+        <geometry name="flipper_geom">
+          <mesh filename="package://${MESH}/tactile_sensor/ee_simple.STL" scale="0.0009 0.00078 0.00085"/>
+        </geometry>
+        <material name="white">
+          <color rgba="1 1 1 1"/>
+        </material>
+      </visual>
+      <!--collision name="flipper_collision">
+        <origin rpy="0.0 0.0 0.0 " xyz="0 0 0"/>
+        <geometry name="flipper_geom_collision">
+          <mesh filename="package://${MESH_COLL}/tactile_sensor/ee_simple.STL" scale="0.0009 0.00078 0.0009"/>
+        </geometry>
+      </collision-->
+    </link>
+
+    <joint name="left_arm_ee" type="fixed">
+      <origin xyz="0 0 -0.17" rpy="-1.570796 0 0" />
+      <!--origin xyz="0 0 -0.19" rpy="-1.570796 0 0" /-->
+      <parent link="handmount_LEFT"/>
+      <child link="end_effector_LEFT"/>
+    </joint>
+    <link name="end_effector_LEFT">
+        <!--inertial>
+          <mass value="0.093" />
+          <origin xyz="0 0 0" />
+          <inertia ixx="0.0" ixy="0.0" ixz="0.0"
+                   iyy="0.0" iyz="-0.0"
+                   izz="0.0" />
+          </inertial-->
+          <visual>
+            <geometry>
+              <cylinder radius="0.001" length="0.01" />
+            </geometry>
+            <material name="white">
+              <color rgba="1 1 1 1"/>
+            </material>
+          </visual>
+
+    </link>
+
+  </macro>
+</robot>
