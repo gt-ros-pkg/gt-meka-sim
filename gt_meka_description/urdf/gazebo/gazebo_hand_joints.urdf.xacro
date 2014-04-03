@@ -1,0 +1,285 @@
+<?xml version="1.0"?>
+
+<robot>
+
+  <gazebo reference="gcp_r_joint">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="palm_joint">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="right_hand_j0">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="right_hand_j1">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="right_hand_j2">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="right_hand_j3">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="right_hand_j4">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="right_hand_j5">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="right_hand_j6">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="right_hand_j7">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="right_hand_j8">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="right_hand_j9">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="right_hand_j10">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="right_hand_j11">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+  
+  <gazebo reference="gcp_l_joint">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="l_palm_joint">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="left_hand_j0">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="left_hand_j1">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="left_hand_j2">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="left_hand_j3">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="left_hand_j4">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="left_hand_j5">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="left_hand_j6">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="left_hand_j7">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="left_hand_j8">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="left_hand_j9">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="left_hand_j10">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+  <gazebo reference="left_hand_j11">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
+</robot>

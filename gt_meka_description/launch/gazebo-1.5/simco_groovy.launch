@@ -1,0 +1,13 @@
+<launch>
+
+  <!-- Bring up the ASUS World -->
+  <include file="$(find asus_description)/launch/gazebo-1.5/asus_groovy_world.launch" />
+
+  <!-- Spawn Simco -->
+  <include file="$(find gt_meka_description)/launch/gazebo-1.5/simco_spawn.launch" />
+
+  <!-- Bring-up Controllers --> 
+  <include file="$(find gt_meka_description)/launch/simco_default_controllers.launch" />
+
+</launch>
+

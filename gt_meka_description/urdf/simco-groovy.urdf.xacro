@@ -8,7 +8,8 @@
  <property name="MESH_COLL" value="gt_meka_description/urdf/meshes/low_res" />
 
   <!-- simulator_gazebo plugins and tags for inclusion in sdf -->
-  <include filename="./gazebo/gazebo.urdf.xacro" />
+  <!--include filename="./gazebo/gazebo.urdf.xacro" /-->
+  <include filename="./gazebo/gazebo-groovy.urdf.xacro" />
 
   <!-- Additional gazebo files added for creating tactile sensors on some links for HRL -->
   <include filename="./gazebo/gazebo_joints.urdf.xacro" />

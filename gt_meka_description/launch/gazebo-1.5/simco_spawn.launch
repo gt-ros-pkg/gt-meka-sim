@@ -1,0 +1,10 @@
+<launch>
+
+  <!-- convert robot xacro into raw URDF file -->
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find gt_meka_description)/urdf/simco-groovy.urdf.xacro'" />
+
+  <!-- push robot_description to factory and spawn robot in gazebo -->
+  <node name="spawn_meka_model" pkg="gazebo" type="spawn_model" args="$(optenv ROBOT_INITIAL_POSE) -pause -urdf -param robot_description -model meka" respawn="false" output="screen" />
+
+</launch>
+

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!--macro name="surface_properties" params="link_name">
+    ##Example properties taken from Daehyung's pr2 contact params 
+    <gazebo reference="${link_name}_collision">
+      <surface>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>0</threshold>
+        </bounce>
+        <friction>
+          <ode>
+            <mu>0.010000</mu>
+            <mu2>0.010000</mu2>
+            <slip1>0.0</slip1>
+            <slip2>0.0</slip2>
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+            <soft_cfm>0.4</soft_cfm>
+            <soft_erp>0.6</soft_erp>
+          </ode>
+        </contact>
+      </surface>
+    </gazebo>
+</macro>-->
+  
+  <!-- BEGIN LEFT HAND -->
+  <non_tactile_surface link_name="gcp_LEFT"/>
+  <non_tactile_surface link_name="l_palm"/>
+  <non_tactile_surface link_name="l_thumb0"/>
+  <non_tactile_surface link_name="l_thumb1"/>
+  <non_tactile_surface link_name="l_thumb2"/>
+  <non_tactile_surface link_name="l_index0"/>
+  <non_tactile_surface link_name="l_index1"/>
+  <non_tactile_surface link_name="l_index2"/>
+  <non_tactile_surface link_name="l_ring0"/>
+  <non_tactile_surface link_name="l_ring1"/>
+  <non_tactile_surface link_name="l_ring2"/>
+  <non_tactile_surface link_name="l_pinky0"/>
+  <non_tactile_surface link_name="l_pinky1"/>
+  <non_tactile_surface link_name="l_pinky2"/>
+  
+  <!-- BEGIN LEFT HAND -->
+  <non_tactile_surface link_name="gcp_RIGHT"/>
+  <non_tactile_surface link_name="palm"/>
+  <non_tactile_surface link_name="thumb0"/>
+  <non_tactile_surface link_name="thumb1"/>
+  <non_tactile_surface link_name="thumb2"/>
+  <non_tactile_surface link_name="index0"/>
+  <non_tactile_surface link_name="index1"/>
+  <non_tactile_surface link_name="index2"/>
+  <non_tactile_surface link_name="ring0"/>
+  <non_tactile_surface link_name="ring1"/>
+  <non_tactile_surface link_name="ring2"/>
+  <non_tactile_surface link_name="pinky0"/>
+  <non_tactile_surface link_name="pinky1"/>
+  <non_tactile_surface link_name="pinky2"/>
+
+</robot>

@@ -1,0 +1,462 @@
+<?xml version="1.0"?>
+<robot>
+  <property name="M_PI" value="3.1415926535897931" />
+ 
+  <macro name="m3_l_palm" params="side parent reflect *origin">
+
+  <joint name="gcp_l_joint" type="fixed">
+    <origin xyz="-0.03 -0.025 -0.06" rpy="0 0 0" />
+    <parent link="l_palm"/>
+    <child link="gcp_LEFT" />
+  </joint>
+
+  <link name="gcp_LEFT">
+  <!--
+    <origin xyz="0 0 0"/>
+    <mass value= "0" />
+    <inertia ixx="0.0" ixy="0" ixz="0" iyy="0.0" iyz="0" izz="0.0"/>
+    -->
+  </link>
+
+  <joint name="l_palm_joint" type="fixed">
+    <origin xyz="0 0 -0.04414" rpy="0 0 0" />
+    <parent link="${parent}"/>
+    <child link="l_palm" />
+  </joint>
+
+     <link name="l_palm">
+      <inertial>
+        <mass value="0.663" />
+	<origin xyz="0.001459 0.001619 -0.051312"/>
+	<inertia ixx="0.000873"
+	iyy="0.000597"
+	izz="0.000565"
+	ixy="0.000031"
+	ixz="-0.000008"
+	iyz="0.000016" />
+      </inertial>
+
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="l_palm_geom">
+		      <mesh filename="package://${MESH}/H2R3/H2R3_LT8_palm_left.dae" />
+	      </geometry>  
+      </visual>
+
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="l_palm_collision">
+		      <mesh filename="package://${MESH_COLL}/H2R3/H2R3_RT8_palm_right.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+<!-- Start Thumb -->
+    <joint name="left_hand_j0" type="revolute">
+      <axis xyz="0 0 -1" />
+      <origin xyz="-0.02 -0.028 -0.03" rpy="0 0 0" />
+      <parent link="l_palm"/>
+      <child link="l_thumb0"/>
+      <limit effort="100" velocity="${20.0*M_PI/180}" lower="${-40*M_PI/180}" upper="${15*M_PI/180}" />
+    </joint>
+
+    <link name="l_thumb0">
+      <inertial>
+        <mass value="0.0117" />
+	<origin xyz="0.0 0.0 0.0"/>
+	<inertia ixx="0.0"
+	iyy="0.0"
+	izz="0.0"
+	ixy="0.0"
+	ixz="0.0"
+	iyz="0.0" />
+      </inertial>
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="l_thumb0_geom">
+		      <mesh filename="package://${MESH}/H2R3/H2R3_RJ0_thumb_abductlink.dae" />
+	      </geometry>  
+      </visual>
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="l_thumb0_collision">
+		      <mesh filename="package://${MESH_COLL}/H2R3/H2R3_RJ0_thumb_abductlink.stl" />
+	      </geometry>
+      </collision>
+    </link>
+  
+    <joint name="left_hand_j1" type="revolute">
+      <axis xyz="0 -1 0"/>
+     <limit effort="100" velocity="${75*M_PI/180}" lower="${-80.919*M_PI/180}" upper="${80.91*M_PI/180}" />    
+      <origin xyz="-0.018 0 0" rpy="0 0 0" />
+      <parent link="l_thumb0"/>
+      <child link="l_thumb1"/>
+    </joint>
+    <link name="l_thumb1">
+      <inertial>
+        <mass value="0.0344" />
+	<origin xyz="0.0 0.0 0.0"/>
+	<inertia ixx="0.0"
+	iyy="0.0"
+	izz="0.0"
+	ixy="0.0"
+	ixz="0.0"
+	iyz="0.0" />
+      </inertial>
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="l_thumb1_geom">
+		      <mesh filename="package://${MESH}/H2R3/H2R3_thumb_knuckle1.dae" />
+	      </geometry>  
+      </visual>
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="l_thumb1_collision">
+		      <mesh filename="package://${MESH_COLL}/H2R3/H2R3_thumb_knuckle1.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+    <joint name="left_hand_j2" type="revolute">
+      <axis xyz="0 -1 0" />
+      <origin xyz="-0.044 0 0" rpy="0 0 0" />
+      <parent link="l_thumb1" />
+      <child link="l_thumb2"/>
+      <limit effort="100" velocity="${50*M_PI/180}" lower="${-14.94*M_PI/180}" upper="${14.94*M_PI/180}" />    
+    </joint>
+
+    <link name="l_thumb2">  
+      <inertial>
+        <mass value="0.01" />
+	<origin xyz="0.0 0.0 0.0"/>
+	<inertia ixx="0.0"
+	iyy="0.0"
+	izz="0.0"
+	ixy="0.0"
+	ixz="0.0"
+	iyz="0.0" />
+      </inertial>        
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="l_thumb_knuckle2_geom">
+		      <mesh filename="package://${MESH}/H2R3/H2R3_thumb_knuckle2.dae" />
+	      </geometry>  
+      </visual>
+      
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="l_thumb_knuckle2_collision">
+		      <mesh filename="package://${MESH_COLL}/H2R3/H2R3_thumb_knuckle2.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+<!-- Start Index Finger -->
+    <joint name="left_hand_j3" type="revolute">
+      <axis xyz="0 1 0" />
+      <origin xyz="0 0.028 -0.101" rpy="0 0 0" />
+      <parent link="l_palm" />
+      <child link="l_index0"/>
+	<limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${37.072*M_PI/180}" />    
+    </joint>
+
+    <link name="l_index0">
+      <inertial>
+        <mass value="0.01" />
+	<origin xyz="0.0 0.0 0.0"/>
+	<inertia ixx="0.0"
+	iyy="0.0"
+	izz="0.0"
+	ixy="0.0"
+	ixz="0.0"
+	iyz="0.0" />
+      </inertial>        
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="l_index0_geom">		      
+		     <mesh filename="package://${MESH}/H2R3/H2R3_finger_knuckle1.dae" />
+	      </geometry>  
+      </visual>      
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="l_index0__collision">
+		      <mesh filename="package://${MESH_COLL}/H2R3/H2R3_finger_knuckle1.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+    <joint name="left_hand_j4" type="revolute">
+      <axis xyz="0 1 0" />
+      <limit effort="100" velocity="${1600*M_PI/180}" lower="${-34.99*M_PI/180}" upper="${34.99*M_PI/180}" /> 
+      <origin xyz="0 0 -0.044" rpy="0 0 0" />
+      <parent link="l_index0"/>
+      <child link="l_index1"/>
+    </joint>
+
+    <link name="l_index1"> 
+      <inertial>
+        <mass value="0.0429" />
+	<origin xyz="0.0 0.0 0.0"/>
+	<inertia ixx="0.0"
+	iyy="0.0"
+	izz="0.0"
+	ixy="0.0"
+	ixz="0.0"
+	iyz="0.0" />
+      </inertial>     
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="l_index1_geom">		      
+		      <mesh filename="package://${MESH}/H2R3/H2R3_finger_knuckle2.dae" />
+	      </geometry>  
+      </visual>
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="l_index1_collision">
+		      <mesh filename="package://${MESH_COLL}/H2R3/H2R3_finger_knuckle2.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+    <joint name="left_hand_j5" type="revolute">
+      <axis xyz="0 1 0" />
+      <limit effort="100" velocity="${1600*M_PI/180}" lower="${-34.21*M_PI/180}" upper="${34.213*M_PI/180}" /> 
+      <origin xyz="0 0 -0.032" rpy="0 0 0" />
+      <parent link="l_index1"/>
+      <child link="l_index2"/>
+    </joint>
+
+    <link name="l_index2">
+      <inertial>
+        <mass value="0.01" />
+	<origin xyz="0.0 0.0 0.0"/>
+	<inertia ixx="0.0"
+	iyy="0.0"
+	izz="0.0"
+	ixy="0.0"
+	ixz="0.0"
+	iyz="0.0" />
+      </inertial>        
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="l_index2_geom">		      
+		      <mesh filename="package://${MESH}/H2R3/H2R3_finger_knuckle3.dae" />
+	      </geometry>  
+      </visual>
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="l_index2_collision">
+		      <mesh filename="package://${MESH_COLL}/H2R3/H2R3_finger_knuckle3.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+<!-- Start Ring Finger -->
+    <joint name="left_hand_j6" type="revolute">
+      <axis xyz="0 1 0" />
+      <origin xyz="0 0 -0.101" rpy="0 0 0" />
+      <parent link="l_palm" />
+      <child link="l_ring0"/>
+	<limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${37.072*M_PI/180}" />    
+    </joint>
+
+    <link name="l_ring0">
+      <inertial>
+        <mass value="0.01" />
+	<origin xyz="0.0 0.0 0.0"/>
+	<inertia ixx="0.0"
+	iyy="0.0"
+	izz="0.0"
+	ixy="0.0"
+	ixz="0.0"
+	iyz="0.0" />
+      </inertial>        
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="l_ring0_geom">
+		     <mesh filename="package://${MESH}/H2R3/H2R3_finger_knuckle1.dae" />
+	      </geometry>  
+      </visual>      
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="l_ring0__collision">
+		      <mesh filename="package://${MESH_COLL}/H2R3/H2R3_finger_knuckle1.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+    <joint name="left_hand_j7" type="revolute">
+      <axis xyz="0 1 0" />
+      <limit effort="100" velocity="${1600*M_PI/180}" lower="${-34.99*M_PI/180}" upper="${34.99*M_PI/180}" /> 
+      <origin xyz="0 0 -0.044" rpy="0 0 0" />
+      <parent link="l_ring0"/>
+      <child link="l_ring1"/>
+    </joint>
+
+    <link name="l_ring1">    
+      <inertial>
+        <mass value="0.0429" />
+	<origin xyz="0.0 0.0 0.0"/>
+	<inertia ixx="0.0"
+	iyy="0.0"
+	izz="0.0"
+	ixy="0.0"
+	ixz="0.0"
+	iyz="0.0" />
+      </inertial>       
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="l_ring1_geom">
+		      <mesh filename="package://${MESH}/H2R3/H2R3_finger_knuckle2.dae" />
+	      </geometry>  
+      </visual>
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="l_ring1_collision">
+		      <mesh filename="package://${MESH_COLL}/H2R3/H2R3_finger_knuckle2.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+    <joint name="left_hand_j8" type="revolute">
+      <axis xyz="0 1 0" />
+      <limit effort="100" velocity="${1600*M_PI/180}" lower="${-34.21*M_PI/180}" upper="${34.213*M_PI/180}" /> 
+      <origin xyz="0 0 -0.032" rpy="0 0 0" />
+      <parent link="l_ring1"/>
+      <child link="l_ring2"/>
+    </joint>
+
+    <link name="l_ring2">
+      <inertial>
+        <mass value="0.01" />
+	<origin xyz="0.0 0.0 0.0"/>
+	<inertia ixx="0.0"
+	iyy="0.0"
+	izz="0.0"
+	ixy="0.0"
+	ixz="0.0"
+	iyz="0.0" />
+      </inertial>        
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="l_ring2_geom">
+		      <mesh filename="package://${MESH}/H2R3/H2R3_finger_knuckle3.dae" />
+	      </geometry>  
+      </visual>
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="l_ring2_collision">
+		      <mesh filename="package://${MESH_COLL}/H2R3/H2R3_finger_knuckle3.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+<!-- Start Pinky Finger -->
+    <joint name="left_hand_j9" type="revolute">
+      <axis xyz="0 1 0" />
+      <origin xyz="0 -0.028 -0.101" rpy="0 0 0" />
+      <parent link="l_palm" />
+      <child link="l_pinky0"/>
+	<limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${37.072*M_PI/180}" />    
+    </joint>
+
+    <link name="l_pinky0">
+      <inertial>
+        <mass value="0.01" />
+	<origin xyz="0.0 0.0 0.0"/>
+	<inertia ixx="0.0"
+	iyy="0.0"
+	izz="0.0"
+	ixy="0.0"
+	ixz="0.0"
+	iyz="0.0" />
+      </inertial>        
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="l_pinky0_geom">
+		     <mesh filename="package://${MESH}/H2R3/H2R3_finger_knuckle1.dae" />
+	      </geometry>  
+      </visual>      
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="l_pinky0__collision">
+		      <mesh filename="package://${MESH_COLL}/H2R3/H2R3_finger_knuckle1.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+    <joint name="left_hand_j10" type="revolute">
+      <axis xyz="0 1 0" />
+      <limit effort="100" velocity="${1600*M_PI/180}" lower="${-34.99*M_PI/180}" upper="${34.99*M_PI/180}" /> 
+      <origin xyz="0 0 -0.044" rpy="0 0 0" />
+      <parent link="l_pinky0"/>
+      <child link="l_pinky1"/>
+    </joint>
+
+    <link name="l_pinky1">      
+      <inertial>
+        <mass value="0.0429" />
+	<origin xyz="0.0 0.0 0.0"/>
+	<inertia ixx="0.0"
+	iyy="0.0"
+	izz="0.0"
+	ixy="0.0"
+	ixz="0.0"
+	iyz="0.0" />
+      </inertial>     
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="l_pinky1_geom">
+		      <mesh filename="package://${MESH}/H2R3/H2R3_finger_knuckle2.dae" />
+	      </geometry>  
+      </visual>
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="l_pinky1_collision">
+		      <mesh filename="package://${MESH_COLL}/H2R3/H2R3_finger_knuckle2.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+    <joint name="left_hand_j11" type="revolute">
+      <axis xyz="0 1 0" />
+      <limit effort="100" velocity="${1600*M_PI/180}" lower="${-34.21*M_PI/180}" upper="${34.213*M_PI/180}" /> 
+      <origin xyz="0 0 -0.032" rpy="0 0 0" />
+      <parent link="l_pinky1"/>
+      <child link="l_pinky2"/>
+    </joint>
+
+    <link name="l_pinky2">
+      <inertial>
+        <mass value="0.01" />
+	<origin xyz="0.0 0.0 0.0"/>
+	<inertia ixx="0.0"
+	iyy="0.0"
+	izz="0.0"
+	ixy="0.0"
+	ixz="0.0"
+	iyz="0.0" />
+      </inertial>        
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="l_pinky2_geom">
+		      <mesh filename="package://${MESH}/H2R3/H2R3_finger_knuckle3.dae" />
+	      </geometry>  
+      </visual>
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="l_pinky2_collision">
+		      <mesh filename="package://${MESH_COLL}/H2R3/H2R3_finger_knuckle3.stl" />
+	      </geometry>
+      </collision>
+    </link>
+</macro>
+
+  <macro name="m3_l_hand" params="side parent reflect *origin">
+    <m3_l_palm side="${side}" reflect="${reflect}" parent="${parent}">
+      <insert_block name="origin" />
+    </m3_l_palm>
+  </macro>
+
+
+</robot>

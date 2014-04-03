@@ -1,0 +1,17 @@
+<launch>
+
+  <!-- Bring up the ASUS World -->
+  <include file="$(find asus_description)/launch/asus_world.launch" />
+
+  <!-- Include robot in param server -->
+  <include file="$(find gt_meka_description)/launch/simco_param_upload.launch" />
+
+  <!-- Add robot to the world -->
+  <param name="robot_model" textfile="$(find gt_meka_description)/sdf/model.sdf" />
+<node name="spawn_robot1" pkg="gazebo" type="spawn_model" args="-gazebo -param robot_model -model myrobot" respawn="false" output="screen" />
+
+  <!-- Bring-up Controllers --> 
+  <include file="$(find gt_meka_description)/launch/simco_default_controllers.launch" />
+
+</launch>
+

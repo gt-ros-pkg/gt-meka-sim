@@ -178,7 +178,6 @@
 	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
 	      <geometry name="wrist_LEFT_geom_collision">
 		      <mesh filename="package://${MESH_COLL}/A2R3/A2R3_T5_forearmRoll.stl" />
-              <!--mesh filename="package://${MESH_COLL}/A2R3/A2R3_T5_forearmRoll_coll.stl"/ -->
 	      </geometry>
       </collision>
     </link>
@@ -254,7 +253,6 @@
 	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
 	      <geometry name="handmount_LEFT_geom_collision">
 		      <mesh filename="package://${MESH_COLL}/A2R3/A2R3_T7_wristYaw.stl" />
-              <!--mesh filename="package://${MESH_COLL}/tactile_sensor/new_handmount_LEFT.stl"  scale="0.001 0.001 0.001"/-->
 	      </geometry>
       </collision>
     </link>

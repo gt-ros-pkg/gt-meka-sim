@@ -1,0 +1,481 @@
+<?xml version="1.0"?>
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+
+  <property name="M_PI" value="3.1415926535897931" />
+ 
+
+  <macro name="m3_neck" params="side parent reflect *origin">
+    
+    <joint name="head_j0" type="revolute">
+      <axis xyz="0 -1 0" />
+      <insert_block name="origin" /> <!-- transform from parent link to this joint frame -->
+      <parent link="${parent}"/>
+      <child link="neck_tilt"/>
+      <limit effort="100" velocity="${20.0*M_PI/180}" lower="${-18.0*M_PI/180}" upper="${1.0*M_PI/180}" />
+    </joint>
+
+    <link name="neck_tilt">
+      <inertial>
+        <mass value="0.940" />
+	    <origin xyz="0.000061 0.003310 0.028798"/>
+	    <inertia ixx="0.001395"
+	             iyy="0.001345"
+	             izz="0.000392"
+	             ixy="-0.000000"
+	             ixz="-0.000000"
+	             iyz="-0.000085" />
+        </inertial>
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0" />
+	      <geometry name="neck_tilt_geom">		
+		      <mesh filename="package://${MESH}/S2R1/S2R1_SH1_neckTilt.dae" />
+	      </geometry>  
+      </visual>
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="neck_tilt_geom_collison">
+		      <mesh filename="package://${MESH_COLL}/S2R1/S2R1_SH1_neckTilt.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+    <joint name="head_j1" type="revolute">
+      <axis xyz="0 0 1"/>
+      <limit effort="100" velocity="${75*M_PI/180}" lower="${-56.0*M_PI/180}" upper="${56.0*M_PI/180}" />    
+      <origin xyz="0 0 0.13849" rpy="0 0 0" />
+      <parent link="neck_tilt"/>
+      <child link="neck_roll"/>
+    </joint>
+   
+    <link name="neck_roll">
+      <inertial>
+            <mass value="0.409" />
+	        <origin xyz="0.00015 -0.0018 -0.002" rpy="0 0 0"/>
+	        <inertia ixx="0.00019"
+	                 iyy="0.000174"
+	                 izz="0.000165"
+	                 ixy="0.00000038"
+	                 ixz="-0.00000083"
+	                 iyz="0.00000030" />
+      </inertial>
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="neck_roll_geom">
+		      <mesh filename="package://${MESH}/S2R1/S2R1_SH2_neckRoll.dae" />
+	      </geometry>  
+      </visual>
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="S2R1_SH2_neckRoll_collision">
+		      <box size="0.01 0.01 0.01" />
+	      </geometry>
+      </collision>
+    </link>
+
+    <joint name="head_j2" type="revolute">
+      <axis xyz="-1 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="neck_roll" />
+      <child link="neck_yaw"/>
+      <limit effort="100" velocity="${50*M_PI/180}" lower="${-15.87*M_PI/180}" upper="${15.87*M_PI/180}" />    
+    </joint>
+    
+    <link name="neck_yaw">
+      <inertial>        
+        <mass value="0.496" />
+	    <origin xyz="0.00004540 0.05398226 0.01069054"/>
+	    <inertia ixx="0.00276741"
+	            iyy="0.00036949"
+	            izz="0.00258092"
+	            ixy="0.00000128"
+	            ixz="0.00000005"
+	            iyz="0.00000985" />
+      </inertial>        
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="S2R1_H3_neckYaw_geom">
+		      <mesh filename="package://${MESH}/S2R1/S2R1_H3_neckYaw.dae" />
+	      </geometry>  
+      </visual>
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="S2R1_H3_neckYaw_collision">
+		      <box size="0.01 0.01 0.01" />
+	      </geometry>
+      </collision>
+    </link>
+
+    <joint name="head_j3" type="revolute">
+	  <axis xyz="0 -1 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="neck_yaw" />
+      <child link="head_shell"/>
+	  <limit effort="100" velocity="${50*M_PI/180}" lower="${-8.0*M_PI/180}" upper="${-2.0*M_PI/180}" />    
+    </joint>
+        
+    <link name="head_shell">
+      <inertial>       
+        <mass value="3.178" />
+	    <origin xyz="0.034944 0.05866859 -0.00056344"/>
+	    <inertia ixx="0.03386569"
+	             iyy="0.03066558"
+	             izz="0.03663656"
+	             ixy="0.00358819"
+	             ixz="-0.00002813"
+	             iyz="0.00012964" />
+      </inertial>
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="head_shell_geom">
+		      <mesh filename="package://${MESH}/S2R1/S2R1_H4_SIMC_head.dae" />
+	      </geometry>  
+      </visual>
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="head_shell_collision">		      
+		      <mesh filename="package://${MESH_COLL}/S2R1/S2R1_H4_SIMC_head.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+    <!--joint name="head_j4" type="revolute">
+	  <axis xyz="0 -1 0" />
+      <limit effort="100" velocity="${1600*M_PI/180}" lower="${-70.1*M_PI/180}" upper="${70.1*M_PI/180}" /> 
+      <origin xyz="0.12508 0 0" rpy="0 0 0" />
+      <parent link="head_shell"/>
+      <child link="eye_tilt"/>
+    </joint>
+    
+    <link name="eye_tilt">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+      </inertial>
+      
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="eye_tilt_geom">
+		      <mesh filename="package://${MESH}/S2R1/S2R1_SH5_eyeTilt.dae" />
+	      </geometry>  
+      </visual>
+      
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="eye_tilt_collision">
+		      <box size="0.01 0.01 0.01" />
+	      </geometry>
+      </collision>
+    </link>
+
+    <joint name="head_j5" type="revolute">
+	    <axis xyz="0 0 1" />
+      <limit effort="100" velocity="${1600*M_PI/180}" lower="${-37.49*M_PI/180}" upper="${37.4*M_PI/180}" /> 
+      <origin xyz="0 -0.053 0" rpy="0 0 0" />
+      <parent link="eye_tilt"/>
+      <child link="right_eye"/>
+    </joint>
+    <link name="right_eye">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+      </inertial>
+
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="right_eye_geom">
+		      <mesh filename="package://${MESH}/S2R1/S2R1_eye.dae" />
+	      </geometry>  
+      </visual>
+      
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="right_eye_collision">
+		      <mesh filename="package://${MESH_COLL}/S2R1/S2R1_eye.stl" />
+	      </geometry>
+      </collision>
+    </link>
+
+    <joint name="head_j6" type="revolute">
+	    <axis xyz="0 0 1" />
+      <limit effort="100" velocity="${1600*M_PI/180}" lower="${-37.9*M_PI/180}" upper="${37.99*M_PI/180}" /> 
+      <origin xyz="0 0.053 0" rpy="0 0 0" />
+      <parent link="eye_tilt"/>
+      <child link="left_eye"/>
+    </joint>
+    <link name="left_eye">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+      </inertial>
+
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="left_eye_geom">
+		      <mesh filename="package://${MESH}/S2R1/S2R1_eye.dae" />
+	      </geometry>  
+      </visual>
+      
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="left_eye_collision">
+		      <mesh filename="package://${MESH_COLL}/S2R1/S2R1_eye.stl" />
+	      </geometry>
+      </collision>
+    </link>
+    
+    <joint name="head_j7_rt_eyelid_top" type="revolute">
+	    <axis xyz="0 -1 0" />
+      <limit effort="100" velocity="${1600*M_PI/180}" lower="${2.0*M_PI/180}" upper="${68.0*M_PI/180}" /> 
+      <origin xyz="0 0.0 0" rpy="0 0.785 0" />
+      <parent link="right_eye"/>
+      <child link="rt_eyelid_top"/>
+    </joint>
+    
+    <link name="rt_eyelid_top">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+      </inertial>
+      
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="rt_eyelid_top_geom">
+		      <mesh filename="package://${MESH}/S2R1/eyelid_top.dae" />
+	      </geometry>  
+      </visual>
+      
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="rt_eyelid_top_collision">
+		      <box size="0.01 0.01 0.01" />
+	      </geometry>
+      </collision>
+    </link>
+       
+    <joint name="head_j7_rt_eyelid_bottom" type="revolute">
+	    <axis xyz="0 1 0" />
+       <limit effort="100" velocity="${1600*M_PI/180}" lower="${2.0*M_PI/180}" upper="${68.0*M_PI/180}" /> 
+      <origin xyz="0 0.0 0" rpy="0 -0.785 0" />
+      <parent link="right_eye"/>
+      <child link="rt_eyelid_bottom"/>
+    </joint>
+    
+    <link name="rt_eyelid_bottom">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+      </inertial>
+
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="eyelid_bottom_geom">
+		      <mesh filename="package://${MESH}/S2R1/eyelid_bottom.dae" />
+	      </geometry>  
+      </visual>
+      
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="eyelid_bottom_collision">
+		      <box size="0.01 0.01 0.01" />
+	      </geometry>
+      </collision>
+    </link>
+
+    <joint name="head_j7_lt_eyelid_top" type="revolute">
+	    <axis xyz="0 -1 0" />
+       <limit effort="100" velocity="${1600*M_PI/180}" lower="${2.0*M_PI/180}" upper="${68.0*M_PI/180}" />  
+      <origin xyz="0 0.0 0" rpy="0 0.785 0" />
+      <parent link="left_eye"/>
+      <child link="lt_eyelid_top"/>
+    </joint>
+    
+    <link name="lt_eyelid_top">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+      </inertial>
+
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="lt_eyelid_top_geom">
+		      <mesh filename="package://${MESH}/S2R1/eyelid_top.dae" />
+	      </geometry>  
+      </visual>
+      
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="lt_eyelid_top_collision">
+		      <box size="0.01 0.01 0.01" />
+	      </geometry>
+      </collision>
+    </link>
+       
+    <joint name="head_j7_lt_eyelid_bottom" type="revolute">
+	    <axis xyz="0 1 0" />
+       <limit effort="100" velocity="${1600*M_PI/180}" lower="${2.0*M_PI/180}" upper="${68.0*M_PI/180}" />  
+      <origin xyz="0 0.0 0" rpy="0 -0.785 0" />
+      <parent link="left_eye"/>
+      <child link="lt_eyelid_bottom"/>
+    </joint>
+    
+    <link name="lt_eyelid_bottom">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+      </inertial>
+
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="eyelid_bottom_geom2">
+		      <mesh filename="package://${MESH}/S2R1/eyelid_bottom.dae" />
+	      </geometry>  
+      </visual>
+      
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="eyelid_bottom_collision2">
+		      <box size="0.01 0.01 0.01" />
+	      </geometry>
+      </collision>
+    </link>
+    
+    
+     <joint name="head_j8" type="revolute">
+	    <axis xyz="0 0 1" />
+      <limit effort="100" velocity="${1600*M_PI/180}" lower="${-150.0*M_PI/180}" upper="${150.0*M_PI/180}" /> 
+      <origin xyz="0.022 0.138 0.120" rpy="-1.13 0 0" />
+      <parent link="head_shell"/>
+      <child link="ear_roll"/>
+    </joint>
+    
+    <link name="ear_roll">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+      </inertial>
+      
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="ear_roll_geom">
+		      <mesh filename="package://${MESH}/S2R1/ear_mount.dae" />
+	      </geometry>  
+      </visual>
+      
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="ear_roll_collision">
+		      <box size="0.01 0.01 0.01" />
+	      </geometry>
+      </collision>
+    </link>
+    
+    <joint name="head_j9" type="revolute">
+	    <axis xyz="0 -1 0" />
+      <limit effort="100" velocity="${1600*M_PI/180}" lower="${0.0*M_PI/180}" upper="${123.0*M_PI/180}" /> 
+      <origin xyz="0.0 0.0 0.0" rpy="0 1.07 0" />
+      <parent link="ear_roll"/>
+      <child link="ear1"/>
+    </joint>
+    
+    <link name="ear1">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+      </inertial>
+      
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="ear1_geom">
+		      <mesh filename="package://${MESH}/S2R1/ear.dae" />
+	      </geometry>  
+      </visual>
+      
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="ear1_collision">
+		      <box size="0.01 0.01 0.01" />
+	      </geometry>
+      </collision>
+    </link>
+
+    <joint name="head_j10" type="revolute">
+	    <axis xyz="0 0 1" />
+       <limit effort="100" velocity="${1600*M_PI/180}" lower="${-150.0*M_PI/180}" upper="${150.0*M_PI/180}" /> 
+      <origin xyz="0.022 -0.138 0.120" rpy="1.13 0 0" />
+      <parent link="head_shell"/>
+      <child link="ear_roll2"/>
+    </joint>
+    
+    <link name="ear_roll2">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+      </inertial>
+      
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="ear_roll_geom2">
+		      <mesh filename="package://${MESH}/S2R1/ear_mount.dae" />
+	      </geometry>  
+      </visual>
+      
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="ear_roll_collision2">
+		      <box size="0.01 0.01 0.01" />
+	      </geometry>
+      </collision>
+    </link>
+    
+    <joint name="head_j11" type="revolute">
+	    <axis xyz="0 -1 0" />
+     <limit effort="100" velocity="${1600*M_PI/180}" lower="${0.0*M_PI/180}" upper="${123.0*M_PI/180}" /> 
+      <origin xyz="0.0 0.0 0.0" rpy="0 1.07 0" />
+      <parent link="ear_roll2"/>
+      <child link="ear2"/>
+    </joint>
+    
+    <link name="ear2">      
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+      </inertial>
+
+      <visual>
+	      <origin xyz="0 0 0" rpy="0 0 0 " />
+	      <geometry name="ear2_geom">
+		      <mesh filename="package://${MESH}/S2R1/ear.dae" />
+	      </geometry>  
+      </visual>
+      
+      <collision>
+	      <origin xyz="0 0 0" rpy="0.0 0.0 0.0 " />
+	      <geometry name="ear2_collision">
+		      <box size="0.01 0.01 0.01" />
+	      </geometry>
+      </collision>
+    </link-->
+</macro>
+
+
+  <macro name="m3_head" params="side parent reflect *origin">
+    <m3_neck side="${side}" reflect="${reflect}" parent="${parent}">
+      <insert_block name="origin" />
+    </m3_neck>
+  </macro>
+
+
+</robot>
