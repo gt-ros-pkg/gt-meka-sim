@@ -1,0 +1,10 @@
+<launch>
+
+  <!-- Bring up the Robot in ASUS World -->
+  <include file="$(find gt_meka_description)/launch/gazebo-1.5/simco_groovy.launch" />
+
+  <!-- spawn table and tabletop object-->
+  <include file="$(find gt_meka_description)/launch/gazebo-1.5/table_object.launch" />
+
+</launch>
+

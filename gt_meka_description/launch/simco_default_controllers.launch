@@ -14,10 +14,20 @@
   <node name="darci_arm_controllers_spawner"
         pkg="pr2_controller_manager" type="spawner" output="screen"
         args="r_arm_controller l_arm_controller " />
-
+  
   <node name="torso_sim_setup" pkg="gt_meka_description" type="torso_setup.py" output="screen" />
   <!--  <node pkg="tf" 
         type="static_transform_publisher" 
         name="torso_lift_link_broadcaster" 
         args="0., 0., 0.2337, 0., 0., 0., 1. upper torso_lift_link 30" />-->
+
+  <!-- Head -->
+  <rosparam command="load" file="$(find gt_meka_description)/yaml/simco_neck_controller.yaml" />
+  <!-- Controllers that come up started -->
+  <node name="simco_neck_controller_spawner"
+        pkg="pr2_controller_manager" type="spawner" output="screen"
+        args="neck_controller " />
+  
+  <node name="head_sim_setup" pkg="gt_meka_description" type="head_setup.py" output="screen" />
+
 </launch>

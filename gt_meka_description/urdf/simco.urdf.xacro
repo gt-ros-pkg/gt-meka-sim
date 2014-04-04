@@ -13,6 +13,7 @@
   <!-- Additional gazebo files added for creating tactile sensors on some links for HRL -->
   <include filename="./gazebo/gazebo_joints.urdf.xacro" />
   <include filename="./gazebo/gazebo_hand_joints.urdf.xacro" />
+  <include filename="./gazebo/gazebo_head_joints.urdf.xacro" />
   <!--include filename="./gazebo/gazebo_links.urdf.xacro" /-->
   <!--include filename="./gazebo/gazebo_hand_links.urdf.xacro" /-->
 
@@ -34,27 +35,12 @@
   <include filename="./SIMC_head_defs.urdf.xacro" />
 
   <!-- john added transmissions -->
-  <include filename="./transmissions/A2R4_r_arm_defs.transmission.xacro" />
-  <include filename="./transmissions/A2R4_l_arm_defs.transmission.xacro" />
-  <include filename="./transmissions/zlift_defs.transmission.xacro" />
+  <include filename="./transmissions_hydro/A2R4_r_arm_defs.transmission.xacro" />
+  <include filename="./transmissions_hydro/A2R4_l_arm_defs.transmission.xacro" />
+  <include filename="./transmissions_hydro/zlift_defs.transmission.xacro" />
+  <include filename="./transmissions_hydro/SIMC_head_defs.transmission.xacro" />
 
   <link name="world" />
-
-  <!-- Added in as test -->
-  <!--link name="base_link">
-     <inertial>
-          <mass value="1" />
-          <origin xyz="0 0 0" />
-          <inertia ixx="0"  ixy="0"  ixz="0" iyy="0"  iyz="0" izz="0" />
-     </inertial>
-  </link-->
-
-  <!-- Solid Base -->
-  <!--joint name="base_joint" type="fixed">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-    <parent link="world" />
-    <child link="base_link" />
-  </joint-->
 
   <meka_base reflect="1" parent="world">
     <origin xyz="0.0 0.0 0.02" rpy="0 0 0" />
@@ -110,7 +96,7 @@
   <m3_r_hand side="r" reflect="1" parent="handmount_RIGHT">
     <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
   </m3_r_hand>
- 
+
   <m3_l_hand side="l" reflect="1" parent="handmount_LEFT">
     <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
   </m3_l_hand>
@@ -125,6 +111,7 @@
   <m3_zlift_transmission name="torso_lift"/>
   <m3_r_arm_transmission side="r" reflect="1" parent="torso_lift_link"/>
   <m3_l_arm_transmission side="l" reflect="1" parent="torso_lift_link"/>
+  <m3_head_transmission />
 
 </robot>
   

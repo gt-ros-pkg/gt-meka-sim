@@ -1,0 +1,29 @@
+neck_controller:
+  type: "robot_mechanism_controllers/JointTrajectoryActionController"
+  joints:
+    - head_j0
+    - head_j1
+    - head_j2
+    - head_j3
+  gains:
+    head_j0: {p: 43, d: 2.58, i: 0, i_clamp: 0}
+    head_j1: {p: 43, d: 4.30, i: 0, i_clamp: 0}
+    head_j2: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+    head_j3: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+  joint_trajectory_action_node:
+    joints:
+      - head_j0
+      - head_j1
+      - head_j2
+      - head_j3
+    constraints:
+      goal_time: 0.6
+      head_j0:
+        goal: 0.02
+      head_j1:
+        goal: 0.02
+      head_j2:
+        goal: 0.02
+      head_j3:
+        goal: 0.02
+
