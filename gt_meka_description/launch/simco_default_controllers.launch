@@ -22,12 +22,23 @@
         args="0., 0., 0.2337, 0., 0., 0., 1. upper torso_lift_link 30" />-->
 
   <!-- Head -->
-  <rosparam command="load" file="$(find gt_meka_description)/yaml/simco_neck_controller.yaml" />
+  <rosparam command="load" file="$(find gt_meka_description)/yaml/simco_head_controller.yaml" />
+
   <!-- Controllers that come up started -->
-  <node name="simco_neck_controller_spawner"
+  <node name="simco_head_controller_spawner"
         pkg="pr2_controller_manager" type="spawner" output="screen"
-        args="neck_controller " />
+        args="head_controller " />
   
   <node name="head_sim_setup" pkg="gt_meka_description" type="head_setup.py" output="screen" />
+  
+  <!-- Hands -->
+  <rosparam command="load" file="$(find gt_meka_description)/yaml/simco_hand_controllers.yaml" />
+
+  <!-- Controllers that come up started -->
+  <!--node name="simco_hand_controllers_spawner"
+        pkg="pr2_controller_manager" type="spawner" output="screen"
+        args="r_hand_controller l_hand_controller " /-->
+  
+
 
 </launch>

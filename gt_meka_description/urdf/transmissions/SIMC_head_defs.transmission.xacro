@@ -51,12 +51,18 @@
       <joint name="head_j6"/>
     <mechanicalReduction>1</mechanicalReduction>
   </transmission>
+  <!-- Temp for gazebo -->
+  <transmission name="head_t7" type="pr2_mechanism_model/SimpleTransmission">
+      <actuator name="head_a7"/>
+      <joint name="head_j7"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
   
-  <transmission name="head_t7_rt_eyelid_top" type="pr2_mechanism_model/SimpleTransmission">
+  <!--transmission name="head_t7_rt_eyelid_top" type="pr2_mechanism_model/SimpleTransmission">
       <actuator name="head_a7_rt_eyelid_top"/>
       <joint name="head_j7_rt_eyelid_top"/>
     <mechanicalReduction>1</mechanicalReduction>
-  </transmission>
+  </transmission-->
 
   <transmission name="head_t7_rt_eyelid_bottom" type="pr2_mechanism_model/SimpleTransmission">
       <actuator name="head_a7_rt_eyelid_bottom"/>
@@ -105,8 +111,8 @@
 
   <macro name="m3_head_transmission">
     <m3_neck_transmission/>
-    <!--m3_eye_transmission/>
-    <m3_ear_transmission/-->
+    <m3_eye_transmission/>
+    <m3_ear_transmission/>
   </macro>
 
 

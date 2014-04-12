@@ -1,0 +1,69 @@
+head_controller:
+  type: "robot_mechanism_controllers/JointTrajectoryActionController"
+  joints:
+    - head_j0
+    - head_j1
+    - head_j2
+    - head_j3
+    - head_j4
+    - head_j5
+    - head_j6
+    - head_j7
+    - head_j8
+    - head_j9
+    - head_j10
+    - head_j11
+  gains:
+    head_j0: {p: 43, d: 2.58, i: 0, i_clamp: 0}
+    head_j1: {p: 43, d: 4.30, i: 0, i_clamp: 0}
+    head_j2: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+    head_j3: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+    head_j4: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+    head_j5: {p: 43, d: 2.58, i: 0, i_clamp: 0}
+    head_j6: {p: 43, d: 4.30, i: 0, i_clamp: 0}
+    head_j7: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+    head_j8: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+    head_j9: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+    head_j10: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+    head_j11: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+  joint_trajectory_action_node:
+    joints:
+      - head_j0
+      - head_j1
+      - head_j2
+      - head_j3
+      - head_j4
+      - head_j5
+      - head_j6
+      - head_j7
+      - head_j8
+      - head_j9
+      - head_j10
+      - head_j11
+    constraints:
+      goal_time: 0.6
+      head_j0:
+        goal: 0.02
+      head_j1:
+        goal: 0.02
+      head_j2:
+        goal: 0.02
+      head_j3:
+        goal: 0.02
+      head_j4:
+        goal: 0.02
+      head_j5:
+        goal: 0.02
+      head_j6:
+        goal: 0.02
+      head_j7:
+        goal: 0.02
+      head_j8:
+        goal: 0.02
+      head_j9:
+        goal: 0.02
+      head_j10:
+        goal: 0.02
+      head_j11:
+        goal: 0.02
+

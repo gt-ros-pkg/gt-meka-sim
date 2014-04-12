@@ -1,0 +1,69 @@
+r_hand_controller:
+  type: "robot_mechanism_controllers/JointTrajectoryActionController"
+  joints:
+    - right_hand_j0
+    - right_hand_j1
+    - right_hand_j2
+    - right_hand_j3
+    - right_hand_j4
+  gains:
+    right_hand_j0: {p: 43, d: 2.58, i: 0, i_clamp: 0}
+    right_hand_j1: {p: 43, d: 4.30, i: 0, i_clamp: 0}
+    right_hand_j2: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+    right_hand_j3: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+    right_hand_j4: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+  joint_trajectory_action_node:
+    joints:
+      - right_hand_j0
+      - right_hand_j1
+      - right_hand_j2
+      - right_hand_j3
+      - right_hand_j4
+    constraints:
+      goal_time: 0.6
+      right_hand_j0:
+        goal: 0.02
+      right_hand_j1:
+        goal: 0.02
+      right_hand_j2:
+        goal: 0.02
+      right_hand_j3:
+        goal: 0.02
+      right_hand_j4:
+        goal: 0.02
+
+l_hand_controller:
+  type: "robot_mechanism_controllers/JointTrajectoryActionController"
+  joints:
+    - left_hand_j0
+    - left_hand_j1
+    - left_hand_j2
+    - left_hand_j3
+    - left_hand_j4
+  gains:
+    left_hand_j0: {p: 43, d: 2.58, i: 0, i_clamp: 0}
+    left_hand_j1: {p: 43, d: 4.30, i: 0, i_clamp: 0}
+    left_hand_j2: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+    left_hand_j3: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+    left_hand_j4: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+  joint_trajectory_action_node:
+    joints:
+      - left_hand_j0
+      - left_hand_j1
+      - left_hand_j2
+      - left_hand_j3
+      - left_hand_j4
+    constraints:
+      goal_time: 0.6
+      left_hand_j0:
+        goal: 0.02
+      left_hand_j1:
+        goal: 0.02
+      left_hand_j2:
+        goal: 0.02
+      left_hand_j3:
+        goal: 0.02
+      left_hand_j4:
+        goal: 0.02
+
+

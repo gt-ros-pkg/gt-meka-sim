@@ -71,6 +71,16 @@
     <fudgeFactor>0.0</fudgeFactor>
   </gazebo>
 
+  <gazebo reference="head_j7">
+    <kp>1.0</kp>
+    <kd>1.0</kd>
+    <stopCfm>0.8</stopCfm>
+    <stopErp>0.5</stopErp>
+    <provideFeedback>true</provideFeedback>
+    <cfmDamping>true</cfmDamping>
+    <fudgeFactor>0.0</fudgeFactor>
+  </gazebo>
+
   <gazebo reference="head_j7_rt_eyelid_top">
     <kp>1.0</kp>
     <kd>1.0</kd>
