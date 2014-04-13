@@ -63,7 +63,6 @@ class MekaControllerConverter():
             self.joint_names.extend(get_param(controller+'joints', ''))
             self.publishers[controller] = rospy.Publisher(controller+'command', JointTrajectory)
         
-        print self.joint_names
         self.positions = [0.0]*len(self.joint_names)
         self.velocities = [0.0]*len(self.joint_names)
         self.effort = [0.0]*len(self.joint_names)

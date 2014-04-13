@@ -2,6 +2,9 @@
   <!-- Start Controller Manager -->
   <include file="$(find pr2_controller_manager)/controller_manager.launch" />
 
+  <!-- Start Meka Controller to Gazebo Interface -->
+  <node name="meka2gazebo_node" pkg="gt_meka_description" type="meka_controller_interface.py" output="screen" />
+   
   <!-- Torso -->
   <rosparam command="load" file="$(find gt_meka_description)/yaml/darci_torso_controller.yaml" />
   <!-- Controllers that come up started -->
