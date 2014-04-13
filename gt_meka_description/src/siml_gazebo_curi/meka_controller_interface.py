@@ -6,6 +6,8 @@ from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from pr2_controllers_msgs.msg import JointTrajectoryControllerState
 from m3ctrl_msgs.msg import M3JointCmd
 from sensor_msgs.msg import JointState
+from std_msgs.msg import UInt8
+import numpy as np
 
 def get_param(name, value=None):
     private = "~%s" % name
@@ -39,26 +41,25 @@ class MekaControllerConverter():
      SMOOTHING_MODE_SLEW,
      SMOOTHING_MODE_MIN_JERK) = range(3) 
 
-
     def __init__(self):
 
-
-        # Setup some constants
-        self.RIGHT_ARM_CHAIN_SIZE = 7
-        self.LEFT_ARM_CHAIN_SIZE = 7
-        self.RIGHT_HAND_CHAIN_SIZE = 5
-        self.LEFT_HAND_CHAIN_SIZE = 5
-        self.HEAD_CHAIN_SIZE = 12
-        self.HUMANOID_CHAIN_SIZE = self.RIGHT_ARM_CHAIN_SIZE + self.RIGHT_HAND_CHAIN_SIZE + self.LEFT_ARM_CHAIN_SIZE + self.LEFT_HAND_CHAIN_SIZE + self.HEAD_CHAIN_SIZE
+        # Setup the joint controllers we want to convert
+        self.joint_controllers = {MekaControllerConverter.RIGHT_ARM: '/r_arm_controller/joints',
+                                  MekaControllerConverter.LEFT_ARM: '/l_arm_controller/joints',
+                                  MekaControllerConverter.HEAD: '/head_controller/joints',
+                                  MekaControllerConverter.RIGHT_HAND: '/r_hand_controller/joints',
+                                  MekaControllerConverter.LEFT_HAND: '/l_hand_controller/joints'}
 
         # Setup the humanoid state status
         # Order is: right_arm, left_arm, head, right_hand, left_hand
+        # Also setup all of the publishers for each controller
         self.joint_names = []
-        self.joint_names.extend(get_param('/r_arm_controller/joints', ''))
-        self.joint_names.extend(get_param('/l_arm_controller/joints', ''))
-        self.joint_names.extend(get_param('/head_controller/joints', ''))
-        self.joint_names.extend(get_param('/r_hand_controller/joints', ''))
-        self.joint_names.extend(get_param('/l_hand_controller/joints', ''))
+        self.publishers = dict()
+
+        for part in self.joint_controllers:
+            controller = self.joint_controllers[part]
+            self.joint_names.extend(get_param(controller, ''))
+            self.publishers[controller] = rospy.Publisher(controller, JointTrajectory)
 
         self.positions = [0.0]*len(self.joint_names)
         self.velocities = [0.0]*len(self.joint_names)
@@ -70,12 +71,6 @@ class MekaControllerConverter():
         self.zlift_command_sub = rospy.Subscriber('/zlift_command', M3JointCmd, self.zliftCallback)          
         self.joint_state_sub = rospy.Subscriber('/joint_states', JointState, self.joint_state_cb)          
 
-        # Setup publisher to republish the commands
-        self.l_arm_command_pub = rospy.Publisher('/l_arm_controller/command', JointTrajectory)          
-        self.r_arm_command_pub = rospy.Publisher('/r_arm_controller/command', JointTrajectory)          
-        self.head_command_pub = rospy.Publisher('/head_controller/command', JointTrajectory)          
-        self.zlift_command_pub = rospy.Publisher('/torso_controller/command', JointTrajectory)          
-       
         # Replicate the humanoid_state 
         self.humanoid_state_pub = rospy.Publisher('/humanoid_state', JointState)          
 
@@ -84,17 +79,37 @@ class MekaControllerConverter():
 
     def humanoidCallback(self, msg):
         '''
-        message information:
-        uint8[] chain //Which kinematic chain
-        int16[] chain_idx //Which joint of the chain 
-        float32[] stiffness //Joint stiffness in THETA_GC mode (0-1.0)
-        float32[] velocity  //Joint velocity (rad/s) when using a smoothing filter
-        float32[] position  //Desired joint position (rad)
-        uint8[] control_mode //Desired control mode
-        uint8[] smoothing_mode //Desired smoothing mode
+        When callback receives a humanoid control command
+        convert it into the proper controllers (arms, head, etc.)
+        for gazebo
         '''
-        print 'In callback' 
+        trajectory_store = dict()
 
+        # Initialize the dictionary for all of the parts
+        for part in self.joint_controllers:
+            jtm = JointTrajectory()
+            jtp = JointTrajectoryPoint()
+            jtp.time_from_start = rospy.Duration(1.0)
+            jtp.positions = []
+            jtm.points = [jtp] 
+            trajectory_store[part] = jtm
+            
+        # Go through the message and fill in each command separately
+        for i in range(len(msg.chain)):
+          
+            chain_num = ord(msg.chain[i])
+            jtm = trajectory_store[chain_num]
+            jtm.joint_names = get_param(self.joint_controllers[chain_num],'')
+            jtm.points[0].positions.append(msg.position[i])
+            trajectory_store[chain_num] = jtm
+
+        # Now go through and publish each controller
+        for part in self.joint_controllers:
+
+            # Get the actual controller name
+            controller = self.joint_controllers[part]
+            pub = self.publishers[controller]
+            pub.publish(trajectory_store[part])
 
 
     def zliftCallback(self, msg):
@@ -106,6 +121,7 @@ class MekaControllerConverter():
 
     # Go through each of the joints and populate
     def joint_state_cb(self, joint_states):
+        
         for i in range(len(self.joint_names)):
             for j in range(len(joint_states.name)):
                 if self.joint_names[i] == joint_states.name[j]:
@@ -116,35 +132,6 @@ class MekaControllerConverter():
         # Publish the m3 humanoid state
         self.humanoid_state_pub.publish(JointState(joint_states.header, self.joint_names, self.positions, self.velocities, self.effort))
 
-'''
-class JointTrajectoryTest():
-    def __init__(self, controller='/torso_controller'):
-        self.controller = controller
-        self.goal_pub = rospy.Publisher(controller+'/command', JointTrajectory)
-        self.state_sub = rospy.Subscriber(controller+'/state', JointTrajectoryControllerState, self.state_cb)
-        self.joint_names = None
-
-    def state_cb(self, state_msg):
-        if self.joint_names is None:
-            self.joint_names = state_msg.joint_names
-
-    def up_msg(self):
-        jtm = JointTrajectory()
-        jtm.joint_names = self.joint_names
-        jtp = JointTrajectoryPoint()
-        jtp.positions = [0.6]*len(self.joint_names)
-        jtp.time_from_start = rospy.Duration(1.0)
-        jtm.points = [jtp]
-        return jtm
-
-    def run(self):
-        while self.joint_names is None:
-            print "Waiting for joint state information from %s/state topic" %self.controller
-            rospy.sleep(2)
-        print "Received joint state information. Sending torso to default position (0.6m)"
-        up_msg = self.up_msg()
-        self.goal_pub.publish(up_msg)
-'''
 if __name__=='__main__':
     rospy.init_node('MekaController2Gazebo')
     rospy.loginfo("Starting up Meka Controller Converter Node")
