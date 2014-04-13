@@ -30,6 +30,7 @@ class MekaControllerConverter():
     # Some constants that are defined in the C headers duplicated here
     (RIGHT_ARM,LEFT_ARM,TORSO,
      HEAD,RIGHT_HAND,LEFT_HAND) = range(6)
+    ZLIFT = 6
 
     (JOINT_MODE_ROS_OFF,
      JOINT_MODE_ROS_THETA,
@@ -44,17 +45,13 @@ class MekaControllerConverter():
     def __init__(self):
 
         # Setup the joint controllers we want to convert
-        #self.joint_controllers = {MekaControllerConverter.RIGHT_ARM: '/r_arm_controller/command',
-        #                          MekaControllerConverter.LEFT_ARM: '/l_arm_controller/command',
-        #                          MekaControllerConverter.HEAD: '/head_controller/command',
-        #                          MekaControllerConverter.RIGHT_HAND: '/r_hand_controller/command',
-        #                          MekaControllerConverter.LEFT_HAND: '/l_hand_controller/command'}
 
         self.joint_controllers = {MekaControllerConverter.RIGHT_ARM: '/r_arm_controller/',
                                   MekaControllerConverter.LEFT_ARM: '/l_arm_controller/',
                                   MekaControllerConverter.HEAD: '/head_controller/',
                                   MekaControllerConverter.RIGHT_HAND: '/r_hand_controller/',
                                   MekaControllerConverter.LEFT_HAND: '/l_hand_controller/'}
+
         # Setup the humanoid state status
         # Order is: right_arm, left_arm, head, right_hand, left_hand
         # Also setup all of the publishers for each controller
@@ -65,12 +62,16 @@ class MekaControllerConverter():
             controller = self.joint_controllers[part]
             self.joint_names.extend(get_param(controller+'joints', ''))
             self.publishers[controller] = rospy.Publisher(controller+'command', JointTrajectory)
-
+        
         print self.joint_names
         self.positions = [0.0]*len(self.joint_names)
         self.velocities = [0.0]*len(self.joint_names)
         self.effort = [0.0]*len(self.joint_names)
-        
+       
+        # Specific for the zlift
+        self.zlift_pub = rospy.Publisher('/torso_controller/command', JointTrajectory)          
+        self.zlift_joint_names = get_param('/torso_controller/joints', '')          
+
         rospy.loginfo("Setting up subscribers and publishers")
         # Setup subscribers to listen to the commands
         self.humanoid_command_sub = rospy.Subscriber('/humanoid_command', M3JointCmd, self.humanoidCallback)          
@@ -119,13 +120,22 @@ class MekaControllerConverter():
 
 
     def zliftCallback(self, msg):
-        print 'In callback' 
 
+        # Setup the joint trajectory
+        jtm = JointTrajectory()
+        jtp = JointTrajectoryPoint()
+        jtm.joint_names = self.zlift_joint_names
+        jtp.time_from_start = rospy.Duration(1.0)
+        jtp.positions = [msg.position[0]*0.001] #Convert to meters
+        jtm.points = [jtp] 
+        
+        self.zlift_pub.publish(jtm)
 
     def fillJointCommand(self, ):
         print 'In callback' 
 
     # Go through each of the joints and populate
+    # Populates the humanoid_state specifically
     def joint_state_cb(self, joint_states):
         
         for i in range(len(self.joint_names)):
