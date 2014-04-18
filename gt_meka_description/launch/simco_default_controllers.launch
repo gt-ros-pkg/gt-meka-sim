@@ -12,7 +12,7 @@
         pkg="pr2_controller_manager" type="spawner" output="screen"
         args="torso_controller " />
 
-  <rosparam command="load" file="$(find gt_meka_description)/yaml/darci_arm_controllers_low_gains.yaml" />
+  <rosparam command="load" file="$(find gt_meka_description)/yaml/simco_arm_controllers.yaml" />
   <!-- Controllers that come up started -->
   <node name="darci_arm_controllers_spawner"
         pkg="pr2_controller_manager" type="spawner" output="screen"
