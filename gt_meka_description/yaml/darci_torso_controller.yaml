@@ -4,8 +4,8 @@ torso_controller:
     - torso_lift_joint
   gains:
     torso_lift_joint:
-      p: 10000.0
-      d: 3000.0
+      p: 100000.0
+      d: 300.0
       i: 0.0
       i_clamp: 0.0
   position_joint_action_node:
