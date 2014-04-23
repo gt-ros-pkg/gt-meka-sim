@@ -7,7 +7,7 @@
    respawn="false" output="screen" />
 
   <node name="spawn_object" pkg="gazebo" type="spawn_model" 
-   args="-urdf -file $(find gazebo_worlds)/objects/coke_can.urdf -model object_1 -x 0.8 -z 0.55" 
+   args="-urdf -file $(find gt_meka_description)/objects/coke_can.urdf -model object_1 -x 0.8 -z 0.55" 
    respawn="false" output="screen" />
 
   <!-- parameters that give you reasonable physics as well as good speed --> 
