@@ -40,6 +40,8 @@
   <include filename="./transmissions/A2R4_l_arm_defs.transmission.xacro" />
   <include filename="./transmissions/zlift_defs.transmission.xacro" />
   <include filename="./transmissions/SIMC_head_defs.transmission.xacro" />
+  <include filename="./transmissions/H2R4_r_hand_defs.transmission.xacro" />
+  <include filename="./transmissions/H2R4_l_hand_defs.transmission.xacro" />
 
   <link name="world" />
 
@@ -48,7 +50,8 @@
   </meka_base>
 
   <meka_zlift  side="r" reflect="1" parent="dummy_3">
-    <origin xyz="0.42 0.0 0.6137" rpy="0 0 0" />
+    <!--origin xyz="0.42 0.0 0.6137" rpy="0 0 0" /-->
+    <origin xyz="0.42 0.0 0.85" rpy="0 0 0" />
   </meka_zlift>
 
   <!-- Torso -->
@@ -93,15 +96,13 @@
   </m3_l_arm>
 
   <!-- Add Hands -->
-  <!--
   <m3_r_hand side="r" reflect="1" parent="handmount_RIGHT">
     <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
   </m3_r_hand>
 
-  <m3_l_hand side="l" reflect="1" parent="handmount_LEFT">
+  <m3_l_hand side="l" reflect="-1" parent="handmount_LEFT">
     <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
   </m3_l_hand>
-  -->
 
   <!-- Add Head -->
   <m3_head side="r" reflect="1" parent="chest_link">
@@ -113,6 +114,8 @@
   <m3_r_arm_transmission side="r" reflect="1" parent="torso_lift_link"/>
   <m3_l_arm_transmission side="l" reflect="1" parent="torso_lift_link"/>
   <m3_head_transmission />
+  <m3_r_hand_transmission />
+  <m3_l_hand_transmission />
 
 </robot>
   

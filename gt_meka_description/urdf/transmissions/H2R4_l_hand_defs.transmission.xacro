@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<robot>
+ 
+  <macro name="m3_l_palm_transmission">
+
+<!-- Start Thumb -->
+  <transmission name="left_hand_t0" type="pr2_mechanism_model/SimpleTransmission">
+    <actuator name="left_hand_a0"/>
+    <joint name="left_hand_j0"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+
+  
+    <transmission name="left_hand_t1" type="pr2_mechanism_model/SimpleTransmission">
+      <actuator name="left_hand_a1"/>
+      <joint name="left_hand_j1"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+
+    <transmission name="left_hand_t2" type="pr2_mechanism_model/SimpleTransmission">
+      <actuator name="left_hand_a2"/>
+      <joint name="left_hand_j2"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+
+<!-- Start Index Finger -->
+    <transmission name="left_hand_t3" type="pr2_mechanism_model/SimpleTransmission">
+      <actuator name="left_hand_a3"/>
+      <joint name="left_hand_j3"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+
+
+    <transmission name="left_hand_t4" type="pr2_mechanism_model/SimpleTransmission">
+      <actuator name="left_hand_a4"/>
+      <joint name="left_hand_j4"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+
+
+    <transmission name="left_hand_t5" type="pr2_mechanism_model/SimpleTransmission">
+      <actuator name="left_hand_a5"/>
+      <joint name="left_hand_j5"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+
+<!-- Start Ring Finger -->
+    <transmission name="left_hand_t6" type="pr2_mechanism_model/SimpleTransmission">
+      <actuator name="left_hand_a6"/>
+      <joint name="left_hand_j6"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+
+
+    <transmission name="left_hand_t7" type="pr2_mechanism_model/SimpleTransmission">
+      <actuator name="left_hand_a7"/>
+      <joint name="left_hand_j7"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+
+
+    <transmission name="left_hand_t8" type="pr2_mechanism_model/SimpleTransmission">
+      <actuator name="left_hand_a8"/>
+      <joint name="left_hand_j8"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+
+<!-- Start Pinky Finger -->
+    <transmission name="left_hand_t9" type="pr2_mechanism_model/SimpleTransmission">
+      <actuator name="left_hand_a9"/>
+      <joint name="left_hand_j9"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+
+
+    <transmission name="left_hand_t10" type="pr2_mechanism_model/SimpleTransmission">
+      <actuator name="left_hand_a10"/>
+      <joint name="left_hand_j10"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+
+
+    <transmission name="left_hand_t11" type="pr2_mechanism_model/SimpleTransmission">
+      <actuator name="left_hand_a11"/>
+      <joint name="left_hand_j11"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+</macro>
+
+  <macro name="m3_l_hand_transmission">
+    <m3_l_palm_transmission/>
+  </macro>
+
+
+</robot>

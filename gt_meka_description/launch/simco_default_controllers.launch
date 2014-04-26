@@ -7,27 +7,21 @@
    
   <!-- Torso -->
   <rosparam command="load" file="$(find gt_meka_description)/yaml/darci_torso_controller.yaml" />
-  <!-- Controllers that come up started -->
   <node name="darci_torso_controller_spawner"
         pkg="pr2_controller_manager" type="spawner" output="screen"
         args="torso_controller " />
 
+  <node name="torso_sim_setup" pkg="gt_meka_description" type="torso_setup.py" output="screen" />
+
+  <!-- Arms -->
   <rosparam command="load" file="$(find gt_meka_description)/yaml/simco_arm_controllers.yaml" />
-  <!-- Controllers that come up started -->
   <node name="darci_arm_controllers_spawner"
         pkg="pr2_controller_manager" type="spawner" output="screen"
         args="r_arm_controller l_arm_controller " />
-  
-  <node name="torso_sim_setup" pkg="gt_meka_description" type="torso_setup.py" output="screen" />
-  <!--  <node pkg="tf" 
-        type="static_transform_publisher" 
-        name="torso_lift_link_broadcaster" 
-        args="0., 0., 0.2337, 0., 0., 0., 1. upper torso_lift_link 30" />-->
 
   <!-- Head -->
   <rosparam command="load" file="$(find gt_meka_description)/yaml/simco_head_controller.yaml" />
 
-  <!-- Controllers that come up started -->
   <node name="simco_head_controller_spawner"
         pkg="pr2_controller_manager" type="spawner" output="screen"
         args="head_controller " />
@@ -37,7 +31,6 @@
   <!-- Hands -->
   <rosparam command="load" file="$(find gt_meka_description)/yaml/simco_hand_controllers.yaml" />
 
-  <!-- Controllers that come up started -->
   <!--node name="simco_hand_controllers_spawner"
         pkg="pr2_controller_manager" type="spawner" output="screen"
         args="r_hand_controller l_hand_controller " /-->
