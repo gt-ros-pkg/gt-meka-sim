@@ -50,8 +50,8 @@
   </meka_base>
 
   <meka_zlift  side="r" reflect="1" parent="dummy_3">
-    <!--origin xyz="0.42 0.0 0.6137" rpy="0 0 0" /-->
-    <origin xyz="0.42 0.0 0.85" rpy="0 0 0" />
+    <origin xyz="0.42 0.0 0.6137" rpy="0 0 0" />
+    <!--origin xyz="0.42 0.0 0.85" rpy="0 0 0" /-->
   </meka_zlift>
 
   <!-- Torso -->

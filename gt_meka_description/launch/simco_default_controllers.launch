@@ -18,6 +18,11 @@
   <node name="darci_arm_controllers_spawner"
         pkg="pr2_controller_manager" type="spawner" output="screen"
         args="r_arm_controller l_arm_controller " />
+  
+  <node name="arm_r_sim_setup" pkg="gt_meka_description" type="body_part_setup.py" output="screen" 
+            args="r_arm_controller"/>
+  <node name="arm_l_sim_setup" pkg="gt_meka_description" type="body_part_setup.py" output="screen"
+            args="l_arm_controller"/>
 
   <!-- Head -->
   <rosparam command="load" file="$(find gt_meka_description)/yaml/simco_head_controller.yaml" />
@@ -26,14 +31,15 @@
         pkg="pr2_controller_manager" type="spawner" output="screen"
         args="head_controller " />
   
-  <node name="head_sim_setup" pkg="gt_meka_description" type="head_setup.py" output="screen" />
+  <node name="head_sim_setup" pkg="gt_meka_description" type="body_part_setup.py" output="screen"
+            args="head_controller"/>
   
   <!-- Hands -->
   <rosparam command="load" file="$(find gt_meka_description)/yaml/simco_hand_controllers.yaml" />
 
-  <!--node name="simco_hand_controllers_spawner"
+  <node name="simco_hand_controllers_spawner"
         pkg="pr2_controller_manager" type="spawner" output="screen"
-        args="r_hand_controller l_hand_controller " /-->
+        args="r_hand_controller l_hand_controller " />
   
 
 
