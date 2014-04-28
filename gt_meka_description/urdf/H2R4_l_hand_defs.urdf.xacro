@@ -63,10 +63,10 @@
     <link name="l_thumb0">
       <inertial>
         <mass value="0.0117" />
-	<origin xyz="0.0 0.0 0.0"/>
-	<inertia ixx="0.0"
-	iyy="0.0"
-	izz="0.0"
+	<origin xyz="-0.007 -0.00007 -0.0018"/>
+	<inertia ixx="0.00011"
+	iyy="0.00014"
+	izz="0.0008"
 	ixy="0.0"
 	ixz="0.0"
 	iyz="0.0" />
@@ -95,10 +95,10 @@
     <link name="l_thumb1">
       <inertial>
         <mass value="0.0344" />
-	<origin xyz="0.0 0.0 0.0"/>
-	<inertia ixx="0.0"
-	iyy="0.0"
-	izz="0.0"
+	<origin xyz="-0.0015 -0.000014 -0.000081"/>
+	<inertia ixx="0.001"
+	iyy="0.004"
+	izz="0.004"
 	ixy="0.0"
 	ixz="0.0"
 	iyz="0.0" />
@@ -128,10 +128,10 @@
     <link name="l_thumb2">  
       <inertial>
         <mass value="0.01" />
-	<origin xyz="0.0 0.0 0.0"/>
-	<inertia ixx="0.0"
-	iyy="0.0"
-	izz="0.0"
+	<origin xyz="-0.0009 -0.0003 0.0006"/>
+	<inertia ixx="0.001"
+	iyy="0.004"
+	izz="0.004"
 	ixy="0.0"
 	ixz="0.0"
 	iyz="0.0" />
@@ -163,10 +163,10 @@
     <link name="l_index0">
       <inertial>
         <mass value="0.01" />
-	<origin xyz="0.0 0.0 0.0"/>
-	<inertia ixx="0.0"
-	iyy="0.0"
-	izz="0.0"
+	<origin xyz="-0.000416 -0.000061 -0.0012"/>
+	<inertia ixx="0.03"
+	iyy="0.03"
+	izz="0.08"
 	ixy="0.0"
 	ixz="0.0"
 	iyz="0.0" />
@@ -196,10 +196,10 @@
     <link name="l_index1"> 
       <inertial>
         <mass value="0.0429" />
-	<origin xyz="0.0 0.0 0.0"/>
-	<inertia ixx="0.0"
-	iyy="0.0"
-	izz="0.0"
+	<origin xyz="0.003 0.0018 -0.08"/>
+	<inertia ixx="0.01"
+	iyy="0.01"
+	izz="0.003"
 	ixy="0.0"
 	ixz="0.0"
 	iyz="0.0" />
@@ -229,10 +229,10 @@
     <link name="l_index2">
       <inertial>
         <mass value="0.01" />
-	<origin xyz="0.0 0.0 0.0"/>
-	<inertia ixx="0.0"
-	iyy="0.0"
-	izz="0.0"
+	<origin xyz="0.006 -0.006 -0.002"/>
+	<inertia ixx="0.04"
+	iyy="0.04"
+	izz="0.001"
 	ixy="0.0"
 	ixz="0.0"
 	iyz="0.0" />
@@ -263,10 +263,10 @@
     <link name="l_ring0">
       <inertial>
         <mass value="0.01" />
-	<origin xyz="0.0 0.0 0.0"/>
-	<inertia ixx="0.0"
-	iyy="0.0"
-	izz="0.0"
+	<origin xyz="-0.000416 -0.000061 -0.0012"/>
+	<inertia ixx="0.03"
+	iyy="0.03"
+	izz="0.08"
 	ixy="0.0"
 	ixz="0.0"
 	iyz="0.0" />
@@ -296,14 +296,14 @@
     <link name="l_ring1">    
       <inertial>
         <mass value="0.0429" />
-	<origin xyz="0.0 0.0 0.0"/>
-	<inertia ixx="0.0"
-	iyy="0.0"
-	izz="0.0"
+	<origin xyz="0.003 0.0018 -0.08"/>
+	<inertia ixx="0.01"
+	iyy="0.01"
+	izz="0.003"
 	ixy="0.0"
 	ixz="0.0"
 	iyz="0.0" />
-      </inertial>       
+      </inertial>     
       <visual>
 	      <origin xyz="0 0 0" rpy="0 0 0 " />
 	      <geometry name="l_ring1_geom">
@@ -329,10 +329,10 @@
     <link name="l_ring2">
       <inertial>
         <mass value="0.01" />
-	<origin xyz="0.0 0.0 0.0"/>
-	<inertia ixx="0.0"
-	iyy="0.0"
-	izz="0.0"
+	<origin xyz="0.006 -0.006 -0.002"/>
+	<inertia ixx="0.04"
+	iyy="0.04"
+	izz="0.001"
 	ixy="0.0"
 	ixz="0.0"
 	iyz="0.0" />
@@ -363,10 +363,10 @@
     <link name="l_pinky0">
       <inertial>
         <mass value="0.01" />
-	<origin xyz="0.0 0.0 0.0"/>
-	<inertia ixx="0.0"
-	iyy="0.0"
-	izz="0.0"
+	<origin xyz="-0.000416 -0.000061 -0.0012"/>
+	<inertia ixx="0.03"
+	iyy="0.03"
+	izz="0.08"
 	ixy="0.0"
 	ixz="0.0"
 	iyz="0.0" />
@@ -396,10 +396,10 @@
     <link name="l_pinky1">      
       <inertial>
         <mass value="0.0429" />
-	<origin xyz="0.0 0.0 0.0"/>
-	<inertia ixx="0.0"
-	iyy="0.0"
-	izz="0.0"
+	<origin xyz="0.003 0.0018 -0.08"/>
+	<inertia ixx="0.01"
+	iyy="0.01"
+	izz="0.003"
 	ixy="0.0"
 	ixz="0.0"
 	iyz="0.0" />
@@ -429,10 +429,10 @@
     <link name="l_pinky2">
       <inertial>
         <mass value="0.01" />
-	<origin xyz="0.0 0.0 0.0"/>
-	<inertia ixx="0.0"
-	iyy="0.0"
-	izz="0.0"
+	<origin xyz="0.006 -0.006 -0.002"/>
+	<inertia ixx="0.04"
+	iyy="0.04"
+	izz="0.001"
 	ixy="0.0"
 	ixz="0.0"
 	iyz="0.0" />

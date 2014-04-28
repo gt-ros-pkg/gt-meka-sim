@@ -41,6 +41,10 @@
         pkg="pr2_controller_manager" type="spawner" output="screen"
         args="r_hand_controller l_hand_controller " />
   
+  <node name="hand_r_sim_setup" pkg="gt_meka_description" type="body_part_setup.py" output="screen" 
+            args="r_hand_controller"/>
+  <node name="hand_l_sim_setup" pkg="gt_meka_description" type="body_part_setup.py" output="screen"
+            args="l_hand_controller"/>
 
 
 </launch>
