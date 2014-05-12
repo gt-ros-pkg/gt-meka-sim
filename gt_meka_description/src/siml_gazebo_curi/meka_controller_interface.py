@@ -52,6 +52,12 @@ class MekaControllerConverter():
                                   MekaControllerConverter.RIGHT_HAND: '/r_hand_controller/',
                                   MekaControllerConverter.LEFT_HAND: '/l_hand_controller/'}
 
+        # Need to define these manually because URDF doesn't reflect real robot
+        # The real robot does not have access to all finger joints but gazebo requires
+        # all joints to be defined to not explode
+        self.right_hand_joint_names = ['right_hand_j0','right_hand_j1','right_hand_j2','right_hand_j3','right_hand_j4']
+        self.left_hand_joint_names = ['left_hand_j0','left_hand_j1','left_hand_j2','left_hand_j3','left_hand_j4']
+
         # Setup the humanoid state status
         # Order is: right_arm, left_arm, head, right_hand, left_hand
         # Also setup all of the publishers for each controller
@@ -60,7 +66,15 @@ class MekaControllerConverter():
 
         for part in self.joint_controllers:
             controller = self.joint_controllers[part]
-            self.joint_names.extend(get_param(controller+'joints', ''))
+
+            # Specifically to take care of the extra finger joints
+            if part == MekaControllerConverter.RIGHT_HAND:
+                self.joint_names.extend(self.right_hand_joint_names)
+            elif part == MekaControllerConverter.LEFT_HAND:
+                self.joint_names.extend(self.left_hand_joint_names)
+            else:
+                self.joint_names.extend(get_param(controller+'joints', ''))
+
             self.publishers[controller] = rospy.Publisher(controller+'command', JointTrajectory)
         
         self.positions = [0.0]*len(self.joint_names)
@@ -109,16 +123,25 @@ class MekaControllerConverter():
         chain_values = []
         # Go through the message and fill in each command separately
         for i in range(len(msg.chain)):
-          
             chain_num = ord(msg.chain[i])
             chain_values.append(chain_num)
             jtm = trajectory_store[chain_num]
-            jtm.joint_names = get_param(self.joint_controllers[chain_num]+'joints','')
             jtm.points[0].positions.append(msg.position[i])
             trajectory_store[chain_num] = jtm
 
         # Figure out the unique joints that were called
         sent_controllers = np.unique(chain_values)
+
+        # Go through the actual unique commands and populate the fields
+        for chain_cmd in sent_controllers:
+            jtm = trajectory_store[chain_cmd]
+            jtm.joint_names = get_param(self.joint_controllers[chain_cmd]+'joints','')
+
+            # Special case for fingers - add zeros to command
+            if chain_cmd == MekaControllerConverter.RIGHT_HAND or chain_cmd == MekaControllerConverter.LEFT_HAND:
+                jtm.points[0].positions.extend([0.0]*(len(jtm.joint_names)-len(jtm.points[0].positions)))
+
+            trajectory_store[chain_cmd] = jtm
 
         # Only go through the controllers that were actually sent
         for part in sent_controllers:
@@ -141,13 +164,10 @@ class MekaControllerConverter():
         
         self.zlift_pub.publish(jtm)
 
-    def fillJointCommand(self, ):
-        print 'In callback' 
-
     # Go through each of the joints and populate
     # Populates the humanoid_state specifically
     def joint_state_cb(self, joint_states):
-        
+   
         for i in range(len(self.joint_names)):
             for j in range(len(joint_states.name)):
                 if self.joint_names[i] == joint_states.name[j]:
