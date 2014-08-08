@@ -1,0 +1,13 @@
+<launch>
+
+	<!-- send Simco description to param server -->
+	<param name="robot_description" command="$(find xacro)/xacro.py '$(find gt_meka_description)/urdf/simco-groovy.urdf.xacro'" />
+
+	<!--node pkg="rviz" type="rviz" respawn="false" output="screen" name="rviz_real"
+	args="-d '$(find meka_description)/simco.rviz'"/-->
+
+	<!-- Robot state publisher -->
+	<node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher">
+	</node>
+
+</launch>
