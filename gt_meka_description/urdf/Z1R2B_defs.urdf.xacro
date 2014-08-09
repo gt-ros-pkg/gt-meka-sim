@@ -6,20 +6,20 @@
   <macro name="meka_zlift" params="side parent reflect *origin">
 
     <!-- Shoulder pan -->
-    <!--joint name="torso_lift_joint" type="prismatic"-->
-    <joint name="zlift_joint" type="prismatic">
+    <joint name="torso_lift_joint" type="prismatic">
+    <!--joint name="zlift_joint" type="prismatic"-->
       <axis xyz="0 0 1" />
       <insert_block name="origin" />
       <parent link="${parent}"/>
-      <!--child link="torso_lift_link"/-->
-      <child link="zlift_link"/>
+      <child link="torso_lift_link"/>
+      <!--child link="zlift_link"/-->
       <!-- torso_lift limit values are purely invented -->
       <limit lower="0.0"  upper="0.7" velocity="0.2" effort="2000.0"/>
       <dynamics damping="100.0" />
     </joint>
     
-    <!--link name="torso_lift_link"-->
-    <link name="zlift_link">
+    <link name="torso_lift_link">
+    <!--link name="zlift_link"-->
       <inertial>
         <mass value="5.799322" />
         <origin xyz="0.0 0.0 -0.10" rpy="0 0 0"/>

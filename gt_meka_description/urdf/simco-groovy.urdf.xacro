@@ -57,8 +57,8 @@
   <!-- Torso -->
   <joint name="chest_joint" type="fixed">
       <origin xyz="0.0 0.0 0.0"/>
-    <!--parent link="torso_lift_link" /-->
-    <parent link="zlift_link" />
+    <parent link="torso_lift_link" />
+    <!--parent link="zlift_link" /-->
     <child link="chest_link" />
   </joint>
 
@@ -88,13 +88,13 @@
   </link>
 
   <!-- Add Arms -->
-  <!--m3_r_arm side="r" reflect="1" parent="torso_lift_link"-->
-  <m3_r_arm side="r" reflect="1" parent="zlift_link">
+  <m3_r_arm side="r" reflect="1" parent="torso_lift_link">
+  <!--m3_r_arm side="r" reflect="1" parent="zlift_link"-->
       <origin xyz="0.0 -0.18465 0" rpy="0.0 0.0 0.0" />
   </m3_r_arm>
  
-  <!--m3_l_arm side="l" reflect="-1" parent="torso_lift_link"-->
-  <m3_l_arm side="l" reflect="-1" parent="zlift_link">
+  <m3_l_arm side="l" reflect="-1" parent="torso_lift_link">
+  <!--m3_l_arm side="l" reflect="-1" parent="zlift_link"-->
       <origin xyz="0.0 0.18465 0" rpy="0.0 0.0 0.0" />
   </m3_l_arm>
 
@@ -113,8 +113,8 @@
   </m3_head>
 
   <!-- john added transmissions -->
-  <!--m3_zlift_transmission name="torso_lift"/-->
-  <m3_zlift_transmission name="zlift"/>
+  <m3_zlift_transmission name="torso_lift"/>
+  <!--m3_zlift_transmission name="zlift"/-->
   <m3_r_arm_transmission side="r" reflect="1" parent="torso_lift_link"/>
   <m3_l_arm_transmission side="l" reflect="1" parent="torso_lift_link"/>
   <m3_head_transmission />

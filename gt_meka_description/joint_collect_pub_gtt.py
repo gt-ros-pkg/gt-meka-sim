@@ -46,7 +46,8 @@ def shm_omnibase(joint_states):
 def shm_zlift(joint_states):
     for i in range(len(joints)):
       for j in range(len(joint_states.name)):
-	if joints[i] == joint_states.name[j]:
+	#if joints[i] == joint_states.name[j]:
+	if ("zlift_joint" == joint_states.name[j]) and (joints[i] == "torso_lift_joint"):
 	  positions[i] = joint_states.position[j]/1000.0
 	  velocities[i] = joint_states.velocity[j]
 	  effort[i] = joint_states.effort[j]
@@ -77,15 +78,15 @@ positions.append(0.0)
 velocities.append(0.0)
 effort.append(0.0)
 
-joints.append('zlift_joint')
-positions.append(0.0)
-velocities.append(0.0)
-effort.append(0.0)
-
-#joints.append('torso_lift_joint')
+#joints.append('zlift_joint')
 #positions.append(0.0)
 #velocities.append(0.0)
 #effort.append(0.0)
+
+joints.append('torso_lift_joint')
+positions.append(0.55) # set the default to our usual default height
+velocities.append(0.0)
+effort.append(0.0)
 
 # For the Right Arm
 joints.append('right_arm_j0')
@@ -318,7 +319,7 @@ rospy.Subscriber("/humanoid_state", JointState, shm_humanoid)
 
 rospy.Subscriber("/zlift_state", JointState, shm_zlift)
 
-#rospy.Subscriber("/omnibase_state", JointState, shm_omnibase)
+rospy.Subscriber("/omnibase_state", JointState, shm_omnibase)
 
 try:
     while not rospy.is_shutdown():

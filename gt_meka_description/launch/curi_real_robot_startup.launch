@@ -1,13 +1,13 @@
 <launch>
 
-	<!-- send Simco description to param server -->
+	<!-- send Curi description to param server -->
 	<param name="robot_description" command="$(find xacro)/xacro.py '$(find gt_meka_description)/urdf/simco-groovy.urdf.xacro'" />
 
-	<!--node pkg="rviz" type="rviz" respawn="false" output="screen" name="rviz_real"
-	args="-d '$(find meka_description)/simco.rviz'"/-->
-
-	<!-- Robot state publisher -->
+	<!-- Start a robot state publisher to convert joint_states to tf-->
 	<node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher">
 	</node>
+
+	<!-- Startup the joint publisher that converts meka joint states to joint_states-->
+	<node pkg="gt_meka_description" type="joint_collect_pub_gtt.py" name="joint_collect_pub"/>
 
 </launch>
