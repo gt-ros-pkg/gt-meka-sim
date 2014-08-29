@@ -10,4 +10,8 @@
 	<!-- Startup the joint publisher that converts meka joint states to joint_states-->
 	<node pkg="gt_meka_description" type="joint_collect_pub_gtt.py" name="joint_collect_pub"/>
 
+	<!-- Start a FT visualizer see forces through rviz-->
+	<node pkg="curi_sensors" type="ft_rviz_publisher.py" name="ft_visualizer_node">
+	</node>
+
 </launch>
