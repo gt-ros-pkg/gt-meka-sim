@@ -40,11 +40,14 @@
 * and Manipulation (M3) Contract W911NF-11-1-603.
 *********************************************************************/
 
-Required package list:
 
-1. https://github.com/gt-ros-pkg/hrl-haptic-manip.git
+Prerequisite
+-----------
+Following packages are should be installed and on the ROS_PACKAGE_PATH.
+- https://github.com/gt-ros-pkg/hrl-haptic-manip.git
 
-Compile order
+Compilation
+-----------
 1. make 'build' folder on the plugin root folder
 2. cmake ..
 3. make -j4
