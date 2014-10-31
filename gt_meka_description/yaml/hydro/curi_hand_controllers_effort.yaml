@@ -1,0 +1,119 @@
+r_hand_j0_controller:
+    type: "effort_controllers/JointPositionController"
+    joint: right_hand_j0
+    pid: {p: 43, d: 2.58, i: 0, i_clamp: 0}
+
+r_hand_j1_controller:
+    type: "effort_controllers/JointEffortController"
+    joint: right_hand_j1
+    pid: {p: 43, d: 4.30, i: 0, i_clamp: 0}
+
+r_hand_j2_controller:
+    type: "effort_controllers/JointEffortController"
+    joint: right_hand_j2
+    pid: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+
+r_hand_j3_controller:
+    type: "effort_controllers/JointEffortController"
+    joint: right_hand_j3
+    pid: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+
+r_hand_j4_controller:
+    type: "effort_controllers/JointEffortController"
+    joint: right_hand_j4
+    pid: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+
+r_hand_j5_controller:
+    type: "effort_controllers/JointEffortController"
+    joint: right_hand_j5
+    pid: {p: 43, d: 2.58, i: 0, i_clamp: 0}
+
+r_hand_j6_controller:
+    type: "effort_controllers/JointEffortController"
+    joint: right_hand_j6
+    pid: {p: 43, d: 4.30, i: 0, i_clamp: 0}
+
+r_hand_j7_controller:
+    type: "effort_controllers/JointEffortController"
+    joint: right_hand_j7
+    pid: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+
+r_hand_j8_controller:
+    type: "effort_controllers/JointEffortController"
+    joint: right_hand_j8
+    pid: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+
+r_hand_j9_controller:
+    type: "effort_controllers/JointEffortController"
+    joint: right_hand_j9
+    pid: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+
+r_hand_j10_controller:
+    type: "effort_controllers/JointEffortController"
+    joint: right_hand_j10
+    pid: {p: 43, d: 2.58, i: 0, i_clamp: 0}
+
+r_hand_j11_controller:
+    type: "effort_controllers/JointEffortController"
+    joint: right_hand_j11
+    pid: {p: 43, d: 4.30, i: 0, i_clamp: 0}
+
+
+l_hand_controller:
+    type: "effort_controllers/JointTrajectoryController"
+    joints:
+        - left_hand_j0
+        - left_hand_j1
+        - left_hand_j2
+        - left_hand_j3
+        - left_hand_j4
+        - left_hand_j5
+        - left_hand_j6
+        - left_hand_j7
+        - left_hand_j8
+        - left_hand_j9
+        - left_hand_j10
+        - left_hand_j11
+
+    gains:
+        left_hand_j0: {p: 43, d: 2.58, i: 0, i_clamp: 0}
+        left_hand_j1: {p: 43, d: 4.30, i: 0, i_clamp: 0}
+        left_hand_j2: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+        left_hand_j3: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+        left_hand_j4: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+        left_hand_j5: {p: 43, d: 2.58, i: 0, i_clamp: 0}
+        left_hand_j6: {p: 43, d: 4.30, i: 0, i_clamp: 0}
+        left_hand_j7: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+        left_hand_j8: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+        left_hand_j9: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+        left_hand_j10: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+        left_hand_j11: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+
+    constraints:
+      goal_time: 0.6
+      left_hand_j0:
+        goal: 0.02
+      left_hand_j1:
+        goal: 0.02
+      left_hand_j2:
+        goal: 0.02
+      left_hand_j3:
+        goal: 0.02
+      left_hand_j4:
+        goal: 0.02
+      left_hand_j5:
+        goal: 0.02
+      left_hand_j6:
+        goal: 0.02
+      left_hand_j7:
+        goal: 0.02
+      left_hand_j8:
+        goal: 0.02
+      left_hand_j9:
+        goal: 0.02
+      left_hand_j10:
+        goal: 0.02
+      left_hand_j11:
+        goal: 0.02
+
+

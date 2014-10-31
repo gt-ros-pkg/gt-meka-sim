@@ -1,0 +1,73 @@
+r_arm_controller:
+    type: "position_controllers/JointTrajectoryController"
+    joints:
+        - right_arm_j0
+        - right_arm_j1
+        - right_arm_j2
+        - right_arm_j3
+        - right_arm_j4
+        - right_arm_j5
+        - right_arm_j6
+
+    constraints:
+      goal_time: 0.6
+      right_arm_j0:
+        goal: 0.002
+      right_arm_j1:
+        goal: 0.002
+      right_arm_j2:
+        goal: 0.002
+      right_arm_j3:
+        goal: 0.002
+      right_arm_j4:
+        goal: 0.002
+      right_arm_j5:
+        goal: 0.002
+      right_arm_j6:
+        goal: 0.002
+
+
+l_arm_controller:
+    type: "position_controllers/JointTrajectoryController"
+    joints:
+        - left_arm_j0
+        - left_arm_j1
+        - left_arm_j2
+        - left_arm_j3
+        - left_arm_j4
+        - left_arm_j5
+        - left_arm_j6
+
+    constraints:
+      goal_time: 0.6
+      left_arm_j0:
+        goal: 0.002
+      left_arm_j1:
+        goal: 0.002
+      left_arm_j2:
+        goal: 0.002
+      left_arm_j3:
+        goal: 0.002
+      left_arm_j4:
+        goal: 0.002
+      left_arm_j5:
+        goal: 0.002
+      left_arm_j6:
+        goal: 0.002
+
+gazebo_ros_control/pid_gains:
+    right_arm_j0: {p: 10000, p: 10000,d: 60,   i: 100, i_clamp: 100}
+    right_arm_j1: {p: 10000, d: 100.0,i: 100, i_clamp: 100}
+    right_arm_j2: {p: 10000, d: 15.0, i: 100, i_clamp: 100}
+    right_arm_j3: {p: 1000, d: 15.0, i: 100, i_clamp: 100}
+    right_arm_j4: {p: 1000,   d: 1.5,  i: 100, i_clamp: 100}
+    right_arm_j5: {p: 1000,   d: 2.0,  i: 100, i_clamp: 100}
+    right_arm_j6: {p: 1000,   d: 2.0,  i: 100, i_clamp: 100}
+    left_arm_j0: {p: 10000, d: 60.0,  i: 100, i_clamp: 100}
+    left_arm_j1: {p: 10000, d: 100.0, i: 100, i_clamp: 100}
+    left_arm_j2: {p: 10000, d: 15.0,  i: 100, i_clamp: 100}
+    left_arm_j3: {p: 10000, d: 15.0,  i: 100, i_clamp: 100}
+    left_arm_j4: {p: 1000,   d: 1.5,   i: 100, i_clamp: 100}
+    left_arm_j5: {p: 1000,   d: 2.0,   i: 100, i_clamp: 100}
+    left_arm_j6: {p: 1000,   d: 2.0,   i: 100, i_clamp: 100}
+

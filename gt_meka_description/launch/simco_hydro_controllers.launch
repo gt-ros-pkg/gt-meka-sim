@@ -1,0 +1,57 @@
+<launch>
+
+  <!-- Start Meka Controller to Gazebo Interface -->
+  <!--node name="meka2gazebo_node" pkg="gt_meka_description" type="meka_controller_interface.py" output="screen" /-->
+  
+  <!-- Load the joint states and start the joint publisher -->
+  <rosparam command="load" file="$(find gt_meka_description)/yaml/hydro/curi_joint_state.yaml" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+  </node>
+
+  <!-- Torso -->
+  <rosparam command="load" file="$(find gt_meka_description)/yaml/hydro/curi_torso_controller.yaml" />
+  <node name="curi_torso_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="torso_controller torso_state_controller"/>
+
+  <node name="torso_sim_setup" pkg="gt_meka_description" type="hydro_body_part_setup.py" output="screen"
+            args="torso_controller 0.65"/>
+
+  <!-- Arms -->
+  <rosparam command="load" file="$(find gt_meka_description)/yaml/hydro/curi_arm_controllers.yaml" />
+  <node name="curi_arm_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="r_arm_controller l_arm_controller"/>
+  
+  <node name="arm_r_sim_setup" pkg="gt_meka_description" type="hydro_body_part_setup.py" output="screen" 
+            args="r_arm_controller"/>
+  <node name="arm_l_sim_setup" pkg="gt_meka_description" type="hydro_body_part_setup.py" output="screen"
+            args="l_arm_controller"/>
+
+  <!-- Head -->
+  <rosparam command="load" file="$(find gt_meka_description)/yaml/hydro/curi_head_controller.yaml" />
+  <node name="curi_head_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="head_controller"/>
+
+  <node name="head_sim_setup" pkg="gt_meka_description" type="hydro_body_part_setup.py" output="screen"
+            args="head_controller"/>
+  
+  <!-- Hands: We set params for both, but load the position controller initially -->
+  <rosparam command="load" file="$(find gt_meka_description)/yaml/hydro/curi_hand_controllers_traj.yaml" />
+  <rosparam command="load" file="$(find gt_meka_description)/yaml/hydro/curi_hand_controllers_effort.yaml" />
+
+  <node name="curi_hand_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="r_hand_controller l_hand_controller"/>
+  <!--node name="curi_hand_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="r_hand_j0_controller r_hand_j1_controller r_hand_j2_controller 
+                          r_hand_j3_controller r_hand_j4_controller r_hand_j5_controller
+                          r_hand_j6_controller r_hand_j7_controller r_hand_j8_controller
+                          r_hand_j9_controller r_hand_j10_controller r_hand_j11_controller
+                          l_hand_controller"/-->
+  
+  <node name="hand_r_sim_setup" pkg="gt_meka_description" type="hydro_body_part_setup.py" output="screen" 
+            args="r_hand_controller"/>
+  <node name="hand_l_sim_setup" pkg="gt_meka_description" type="hydro_body_part_setup.py" output="screen"
+            args="l_hand_controller"/>
+
+
+</launch>
