@@ -7,11 +7,12 @@
   <include file="$(find gt_meka_description)/launch/simco_param_upload.launch" />
 
   <!-- Add robot to the world -->
-  <param name="robot_model" textfile="$(find gt_meka_description)/sdf/model.sdf" />
-  <node name="spawn_robot1" pkg="gazebo_ros" type="spawn_model" args="-sdf -param robot_model -model myrobot" respawn="false" output="screen" />
+  <!--param name="robot_model" textfile="$(find gt_meka_description)/sdf/model.sdf" /-->
+  <!--node name="spawn_robot1" pkg="gazebo_ros" type="spawn_model" args="-sdf -param robot_model -model myrobot" respawn="false" output="screen" /-->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model simco" />
 
   <!-- Bring-up Controllers --> 
-  <include file="$(find gt_meka_description)/launch/simco_default_controllers.launch" />
+  <include file="$(find gt_meka_description)/launch/simco_hydro_controllers.launch" />
 
 </launch>
 

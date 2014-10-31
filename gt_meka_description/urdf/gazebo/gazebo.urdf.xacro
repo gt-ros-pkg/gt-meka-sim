@@ -4,5 +4,10 @@
       <material>Gazebo/Grey</material>
       <plugin name="ros_model_plugin" filename="libros_model_plugin.so" />
       <static> false </static>
+  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    <!--robotNamespace>curi</robotNamespace-->
+    <robotNamespace></robotNamespace>
+    <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+  </plugin>
   </gazebo>
 </robot>
