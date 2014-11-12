@@ -1,7 +1,7 @@
 <launch>
 
   <!-- Start Meka Controller to Gazebo Interface -->
-  <node name="meka2gazebo_node" pkg="gt_meka_description" type="meka_hydro_controller_interface.py" output="screen" />
+  <!--node name="meka2gazebo_node" pkg="gt_meka_description" type="meka_hydro_controller_interface.py" output="screen" /-->
   
   <!-- Load the joint states and start the joint publisher -->
   <rosparam command="load" file="$(find gt_meka_description)/yaml/hydro/curi_joint_state.yaml" />
@@ -39,8 +39,21 @@
   <rosparam command="load" file="$(find gt_meka_description)/yaml/hydro/curi_hand_controllers_traj.yaml" />
   <rosparam command="load" file="$(find gt_meka_description)/yaml/hydro/curi_hand_controllers_effort.yaml" />
 
+  <node name="curi_hand_effort_loader" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" 
+    args="--stopped r_thumb_controller r_hand_j1_controller r_hand_j2_controller 
+                          r_hand_j3_controller r_hand_j4_controller r_hand_j5_controller
+                          r_hand_j6_controller r_hand_j7_controller r_hand_j8_controller
+                          r_hand_j9_controller r_hand_j10_controller r_hand_j11_controller
+                          l_thumb_controller l_hand_j1_controller l_hand_j2_controller 
+                          l_hand_j3_controller l_hand_j4_controller l_hand_j5_controller 
+                          l_hand_j6_controller l_hand_j7_controller l_hand_j8_controller 
+                          l_hand_j9_controller l_hand_j10_controller l_hand_j11_controller" />
+
   <node name="curi_hand_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
     output="screen" args="r_hand_controller l_hand_controller"/>
+
+
   <!--node name="curi_hand_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
     output="screen" args="r_hand_j0_controller r_hand_j1_controller r_hand_j2_controller 
                           r_hand_j3_controller r_hand_j4_controller r_hand_j5_controller

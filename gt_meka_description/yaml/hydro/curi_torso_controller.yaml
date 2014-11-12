@@ -5,7 +5,7 @@ torso_controller:
 
     constraints:
       goal_time: 0.6 
-      torso_lift_join:
+      torso_lift_joint:
         goal: 0.002
 
 gazebo_ros_control/pid_gains:

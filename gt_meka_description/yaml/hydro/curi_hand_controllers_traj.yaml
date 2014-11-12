@@ -1,3 +1,30 @@
+r_thumb_controller:
+    type: "effort_controllers/JointTrajectoryController"
+    joints: 
+        - right_hand_j0
+
+    gains:
+        right_hand_j0: {p: 43, d: 2.58, i: 0, i_clamp: 0}
+
+    constraints:
+      goal_time: 0.6 
+      right_hand_j0:
+        goal: 0.002
+
+l_thumb_controller:
+    type: "effort_controllers/JointTrajectoryController"
+    joints: 
+        - left_hand_j0
+
+    gains:
+        left_hand_j0: {p: 43, d: 2.58, i: 0, i_clamp: 0}
+
+    constraints:
+      goal_time: 0.6 
+      left_hand_j0:
+        goal: 0.002
+
+
 r_hand_controller:
     type: "effort_controllers/JointTrajectoryController"
     joints:
