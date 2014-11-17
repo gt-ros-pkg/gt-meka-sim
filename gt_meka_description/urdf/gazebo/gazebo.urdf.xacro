@@ -9,5 +9,18 @@
     <robotNamespace></robotNamespace>
     <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
   </plugin>
+
+   <plugin name="ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+    <updateRate>100.0</updateRate>
+    <topicName>ft_sensor_right</topicName>
+    <jointName>right_arm_j6</jointName>
+  </plugin>
+
+   <plugin name="ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+    <updateRate>100.0</updateRate>
+    <topicName>ft_sensor_left</topicName>
+    <jointName>left_arm_j6</jointName>
+  </plugin>
+ 
   </gazebo>
 </robot>
