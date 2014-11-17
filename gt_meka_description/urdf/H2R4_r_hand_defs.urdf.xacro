@@ -92,7 +92,8 @@
   
     <joint name="right_hand_j1" type="revolute">
       <axis xyz="0 -1 0"/>
-     <limit effort="100" velocity="${75*M_PI/180}" lower="${-80.919*M_PI/180}" upper="${80.91*M_PI/180}" />    
+      <!--limit effort="100" velocity="${75*M_PI/180}" lower="${-80.919*M_PI/180}" upper="${80.91*M_PI/180}" /-->    
+	  <limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${90.0*M_PI/180}" />    
       <origin xyz="-0.018 0 0" rpy="0 0 0" />
       <parent link="thumb0"/>
       <child link="thumb1"/>
@@ -127,7 +128,8 @@
       <origin xyz="-0.044 0 0" rpy="0 0 0" />
       <parent link="thumb1" />
       <child link="thumb2"/>
-      <limit effort="100" velocity="${50*M_PI/180}" lower="${-14.94*M_PI/180}" upper="${14.94*M_PI/180}" />    
+      <!--limit effort="100" velocity="${50*M_PI/180}" lower="${-14.94*M_PI/180}" upper="${14.94*M_PI/180}" /-->    
+	  <limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${90.0*M_PI/180}" />    
     </joint>
 
     <link name="thumb2">  
@@ -162,7 +164,8 @@
       <origin xyz="0 0.028 -0.101" rpy="0 0 0" />
       <parent link="palm" />
       <child link="index0"/>
-	<limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${37.072*M_PI/180}" />    
+	<!--limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${37.072*M_PI/180}" /-->    
+	<limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${90.0*M_PI/180}" />    
     </joint>
 
     <link name="index0">
@@ -192,7 +195,8 @@
 
     <joint name="right_hand_j4" type="revolute">
       <axis xyz="0 1 0" />
-      <limit effort="100" velocity="${1600*M_PI/180}" lower="${-34.99*M_PI/180}" upper="${34.99*M_PI/180}" /> 
+      <!--limit effort="100" velocity="${1600*M_PI/180}" lower="${-34.99*M_PI/180}" upper="${34.99*M_PI/180}" /--> 
+	  <limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${90.0*M_PI/180}" />    
       <origin xyz="0 0 -0.044" rpy="0 0 0" />
       <parent link="index0"/>
       <child link="index1"/>
@@ -225,7 +229,8 @@
 
     <joint name="right_hand_j5" type="revolute">
       <axis xyz="0 1 0" />
-      <limit effort="100" velocity="${1600*M_PI/180}" lower="${-34.21*M_PI/180}" upper="${34.213*M_PI/180}" /> 
+      <!--limit effort="100" velocity="${1600*M_PI/180}" lower="${-34.21*M_PI/180}" upper="${34.213*M_PI/180}" /--> 
+	  <limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${90.0*M_PI/180}" />    
       <origin xyz="0 0 -0.032" rpy="0 0 0" />
       <parent link="index1"/>
       <child link="index2"/>
@@ -262,7 +267,8 @@
       <origin xyz="0 0 -0.101" rpy="0 0 0" />
       <parent link="palm" />
       <child link="ring0"/>
-	<limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${37.072*M_PI/180}" />    
+	  <!--limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${37.072*M_PI/180}" /-->    
+	  <limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${90.0*M_PI/180}" />    
     </joint>
 
     <link name="ring0">
@@ -292,7 +298,8 @@
 
     <joint name="right_hand_j7" type="revolute">
       <axis xyz="0 1 0" />
-      <limit effort="100" velocity="${1600*M_PI/180}" lower="${-34.99*M_PI/180}" upper="${34.99*M_PI/180}" /> 
+      <!--limit effort="100" velocity="${1600*M_PI/180}" lower="${-34.99*M_PI/180}" upper="${34.99*M_PI/180}" /--> 
+	  <limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${90.0*M_PI/180}" />    
       <origin xyz="0 0 -0.044" rpy="0 0 0" />
       <parent link="ring0"/>
       <child link="ring1"/>
@@ -325,7 +332,8 @@
 
     <joint name="right_hand_j8" type="revolute">
       <axis xyz="0 1 0" />
-      <limit effort="100" velocity="${1600*M_PI/180}" lower="${-34.21*M_PI/180}" upper="${34.213*M_PI/180}" /> 
+      <!--limit effort="100" velocity="${1600*M_PI/180}" lower="${-34.21*M_PI/180}" upper="${34.213*M_PI/180}" /--> 
+	  <limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${90.0*M_PI/180}" />    
       <origin xyz="0 0 -0.032" rpy="0 0 0" />
       <parent link="ring1"/>
       <child link="ring2"/>
@@ -362,7 +370,8 @@
       <origin xyz="0 -0.028 -0.101" rpy="0 0 0" />
       <parent link="palm" />
       <child link="pinky0"/>
-	<limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${37.072*M_PI/180}" />    
+	  <!--limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${37.072*M_PI/180}" /-->    
+	  <limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${90.0*M_PI/180}" />    
     </joint>
 
     <link name="pinky0">
@@ -392,7 +401,8 @@
 
     <joint name="right_hand_j10" type="revolute">
       <axis xyz="0 1 0" />
-      <limit effort="100" velocity="${1600*M_PI/180}" lower="${-34.99*M_PI/180}" upper="${34.99*M_PI/180}" /> 
+      <!--limit effort="100" velocity="${1600*M_PI/180}" lower="${-34.99*M_PI/180}" upper="${34.99*M_PI/180}" /--> 
+	  <limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${90.0*M_PI/180}" />    
       <origin xyz="0 0 -0.044" rpy="0 0 0" />
       <parent link="pinky0"/>
       <child link="pinky1"/>
@@ -425,7 +435,8 @@
 
     <joint name="right_hand_j11" type="revolute">
       <axis xyz="0 1 0" />
-      <limit effort="100" velocity="${1600*M_PI/180}" lower="${-34.21*M_PI/180}" upper="${34.213*M_PI/180}" /> 
+      <!--limit effort="100" velocity="${1600*M_PI/180}" lower="${-34.21*M_PI/180}" upper="${34.213*M_PI/180}" /--> 
+	  <limit effort="100" velocity="${50*M_PI/180}" lower="${-7.072*M_PI/180}" upper="${90.0*M_PI/180}" />    
       <origin xyz="0 0 -0.032" rpy="0 0 0" />
       <parent link="pinky1"/>
       <child link="pinky2"/>
