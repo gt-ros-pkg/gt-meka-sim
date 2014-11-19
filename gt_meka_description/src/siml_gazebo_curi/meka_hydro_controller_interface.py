@@ -92,6 +92,11 @@ class MekaControllerConverter():
         for controller in self.left_hand_torque_controllers:
             self.hand_publishers[MekaControllerConverter.LEFT_HAND][controller] = rospy.Publisher(controller+'/command', Float64)
 
+        # Setup publishers for the thumb only
+        self.hand_thumb_publishers = dict()
+        self.hand_thumb_publishers[MekaControllerConverter.RIGHT_HAND] = rospy.Publisher('r_thumb_controller/command', JointTrajectory)
+        self.hand_thumb_publishers[MekaControllerConverter.LEFT_HAND]= rospy.Publisher('l_thumb_controller/command', JointTrajectory)
+
         self.positions = [0.0]*len(self.joint_names)
         self.velocities = [0.0]*len(self.joint_names)
         self.effort = [0.0]*len(self.joint_names)
@@ -107,9 +112,9 @@ class MekaControllerConverter():
 
         rospy.loginfo("Setting up subscribers and publishers")
         # Setup subscribers to listen to the commands
-        self.humanoid_command_sub = rospy.Subscriber('/humanoid_command', M3JointCmd, self.humanoidCallback)          
-        self.zlift_command_sub = rospy.Subscriber('/zlift_command', M3JointCmd, self.zliftCallback)          
-        self.joint_state_sub = rospy.Subscriber('/joint_states', JointState, self.joint_state_cb)          
+        self.humanoid_command_sub = rospy.Subscriber('/humanoid_command', M3JointCmd, self.humanoidCallback, queue_size=10)  
+        self.zlift_command_sub = rospy.Subscriber('/zlift_command', M3JointCmd, self.zliftCallback, queue_size=10)  
+        self.joint_state_sub = rospy.Subscriber('/joint_states', JointState, self.joint_state_cb, queue_size=10) 
 
         # Replicate the humanoid_state 
         self.humanoid_state_pub = rospy.Publisher('/humanoid_state', JointState)          
@@ -138,6 +143,8 @@ class MekaControllerConverter():
         # Initialize the dictionary for all of the parts
         for part in self.joint_controllers:
             jtm = JointTrajectory()
+            
+            # Setup the actual positions
             jtp = JointTrajectoryPoint()
             jtp.time_from_start = rospy.Duration(1.0)
             jtp.positions = []
@@ -195,6 +202,9 @@ class MekaControllerConverter():
 
                     # Remove from joint trajectory if torque control
                     del trajectory_store[chain_cmd]
+
+                    # Parse values for the thumb
+                    self.publishThumbPosition(chain_cmd, hand_pos[0])
                 else:
                     self.switchToPositionControl(chain_cmd)
                     #jtm.points[0].positions.extend([0.0]*(len(jtm.joint_names)-len(jtm.points[0].positions)))
@@ -208,7 +218,24 @@ class MekaControllerConverter():
                 # Get the actual controller name
                 controller = self.joint_controllers[part]
                 pub = self.publishers[controller]
-                pub.publish(trajectory_store[part])
+                msg_send = trajectory_store[part]
+                msg_send.header.stamp = rospy.Time.now()
+                pub.publish(msg_send)
+
+    def publishThumbPosition(self, hand, position):
+        '''
+        Publish for single value (thumb)
+        '''
+        jtm = JointTrajectory()
+        jtp = JointTrajectoryPoint()
+        jtp.time_from_start = rospy.Duration(1.0)
+        jtp.positions = [position]
+        jtm.points = [jtp] 
+        if hand == MekaControllerConverter.RIGHT_HAND:
+            jtm.joint_names = ['right_hand_j0']
+        else:
+            jtm.joint_names = ['left_hand_j0']
+        self.hand_thumb_publishers[hand].publish(jtm)
 
     def publishHandTorque(self, hand, torque_values):
         controllers = self.hand_publishers[hand]

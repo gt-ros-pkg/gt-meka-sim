@@ -62,7 +62,8 @@
       <origin xyz="-0.02 0.028 -0.03" rpy="0 0 -1.57" />
       <parent link="palm"/>
       <child link="thumb0"/>
-      <limit effort="100" velocity="${20.0*M_PI/180}" lower="${-40*M_PI/180}" upper="${15*M_PI/180}" />
+      <!--limit effort="100" velocity="${20.0*M_PI/180}" lower="${-40*M_PI/180}" upper="${15*M_PI/180}" /-->
+      <limit effort="100" velocity="${20.0*M_PI/180}" lower="${0.7*M_PI/180}" upper="${90*M_PI/180}" />
     </joint>
 
     <link name="thumb0">
