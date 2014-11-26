@@ -331,7 +331,7 @@ class MekaControllerConverter():
         jtm = JointTrajectory()
         jtp = JointTrajectoryPoint()
         jtm.joint_names = self.zlift_joint_names
-        jtp.time_from_start = rospy.Duration(0.0)
+        jtp.time_from_start = rospy.Duration(1.0)
         jtp.positions = [msg.position[0]*0.001] #Convert to meters
         jtm.points = [jtp] 
         
