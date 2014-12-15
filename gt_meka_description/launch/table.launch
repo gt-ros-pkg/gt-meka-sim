@@ -1,0 +1,7 @@
+<launch>
+
+    <!-- Add kitchen table to the world -->
+    <node name="spawn_table"  pkg="gazebo_ros" type="spawn_model" args="-urdf -file $(find gazebo_siml_kitchen)/objects/kitchen_counter.urdf -model table -x 1.45 -y 0.6" respawn="false" output="screen" />
+
+</launch>
+

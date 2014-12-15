@@ -9,7 +9,7 @@
   <!-- Add robot to the world -->
   <!--param name="robot_model" textfile="$(find gt_meka_description)/sdf/model.sdf" /-->
   <!--node name="spawn_robot1" pkg="gazebo_ros" type="spawn_model" args="-sdf -param robot_model -model myrobot" respawn="false" output="screen" /-->
-  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model simco" />
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model simco -x 0.5" />
 
   <!-- Bring-up Controllers --> 
   <include file="$(find gt_meka_description)/launch/simco_hydro_controllers.launch" />
