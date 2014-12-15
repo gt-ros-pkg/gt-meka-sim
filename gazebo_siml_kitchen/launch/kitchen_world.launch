@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- start up empty world -->
+  <arg name="gui" default="true"/>
+  <arg name="throttled" default="false"/>
+  <arg name="paused" default="true"/>
+
+  <!-- start kitchen -->
+  <include file="$(find kitchen_gazebo)/launch/gazebo.launch"/>
+	
+  <!-- start pr2 -->
+  <include file="$(find pr2_gazebo)/launch/pr2.launch" />
+
+</launch>

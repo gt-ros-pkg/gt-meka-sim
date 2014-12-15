@@ -1,0 +1,13 @@
+<launch>
+  <arg
+    name="model" />
+  <arg
+    name="gui"
+    default="True" />
+  <param
+    name="robot_description"
+    textfile="$(find kitchen_gazebo)/robots/kitchen_gazebo.URDF" />
+  <param
+    name="use_gui"
+    value="$(arg gui)" />
+</launch>
