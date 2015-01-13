@@ -1,0 +1,5 @@
+<launch>
+
+  <node name="spawn_bb" pkg="gazebo_ros" type="spawn_model" args="-urdf -file $(find gazebo_siml_kitchen)/objects/bean_box.urdf -model bb -x 1.4 -y  0. -z 0.89" respawn="false" output="screen" />
+
+</launch>
