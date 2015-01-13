@@ -50,6 +50,9 @@ gazebo_ros_control/pid_gains:
     head_j5: {p: 43, d: 2.58, i: 0, i_clamp: 0}
     head_j6: {p: 43, d: 4.30, i: 0, i_clamp: 0}
     head_j7: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+    head_j7_rt_eyelid_bottom: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+    head_j7_lt_eyelid_top: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
+    head_j7_lt_eyelid_bottom: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
     head_j8: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
     head_j9: {p: 43, d: 0.6446, i: 0, i_clamp: 0}
     head_j10: {p: 43, d: 0.6446, i: 0, i_clamp: 0}

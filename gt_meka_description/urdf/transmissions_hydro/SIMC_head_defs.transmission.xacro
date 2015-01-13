@@ -87,25 +87,34 @@
       <actuator name="head_a7_rt_eyelid_top"/>
       <joint name="head_j7_rt_eyelid_top"/>
     <mechanicalReduction>1</mechanicalReduction>
-  </transmission>
+  </transmission-->
 
   <transmission name="head_t7_rt_eyelid_bottom" type="pr2_mechanism_model/SimpleTransmission">
-      <actuator name="head_a7_rt_eyelid_bottom"/>
+      <type>transmission_interface/SimpleTransmission</type>
       <joint name="head_j7_rt_eyelid_bottom"/>
-    <mechanicalReduction>1</mechanicalReduction>
+      <actuator name="head_a7_rt_eyelid_bottom">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
   </transmission>
   
   <transmission name="head_t7_lt_eyelid_top" type="pr2_mechanism_model/SimpleTransmission">
-      <actuator name="head_a7_lt_eyelid_top"/>
+      <type>transmission_interface/SimpleTransmission</type>
       <joint name="head_j7_lt_eyelid_top"/>
-    <mechanicalReduction>1</mechanicalReduction>
+      <actuator name="head_a7_lt_eyelid_top">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
   </transmission>
 
   <transmission name="head_t7_lt_eyelid_bottom" type="pr2_mechanism_model/SimpleTransmission">
-      <actuator name="head_a7_lt_eyelid_bottom"/>
+      <type>transmission_interface/SimpleTransmission</type>
       <joint name="head_j7_lt_eyelid_bottom"/>
-    <mechanicalReduction>1</mechanicalReduction>
-  </transmission-->
+      <actuator name="head_a7_lt_eyelid_bottom">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+  </transmission>
 </macro>
   
   <macro name="m3_ear_transmission">
