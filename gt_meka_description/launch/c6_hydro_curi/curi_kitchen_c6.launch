@@ -1,0 +1,10 @@
+<launch>
+
+  <!-- Bring up the world with the robot in it-->
+  <include file="$(find gt_meka_description)/launch/c6_hydro_curi/curi_c6_gazebo.launch" />
+
+  <!-- Add table to the world -->
+  <include file="$(find gt_meka_description)/launch/table.launch" />
+
+</launch>
+
