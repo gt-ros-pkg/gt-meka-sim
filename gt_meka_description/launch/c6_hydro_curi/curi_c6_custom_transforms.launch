@@ -1,0 +1,11 @@
+<launch>
+  <!-- NOTE: This launch file is ONLY because we need to publish transforms from ASUS and from Gazebo in Groovy.  However, if we launch the robot and asus in Hydro, then this doesn't happen.  So instead we pull out all transform publishing into a separate launch file that needs to be launched with the GROOVY environment set -->
+
+  <!-- Publish ASUS Transforms -->
+  <include file="$(find asus_description)/launch/hydro_gazebo/asus_hydro_transform.launch" />
+
+  <!-- Publish Robot Transforms --> 
+  <include file="$(find gt_meka_description)/launch/c6_hydro_curi/curi_tf_hydro.launch" />
+
+</launch>
+

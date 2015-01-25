@@ -1,7 +1,7 @@
 <launch>
 
   <!-- Bring up the ASUS World -->
-  <include file="$(find asus_description)/launch/asus_world.launch" />
+  <include file="$(find asus_description)/launch/hydro_gazebo/asus_hydro_world.launch" />
 
   <!-- Include robot in param server -->
   <include file="$(find gt_meka_description)/launch/simco_param_upload.launch" />
