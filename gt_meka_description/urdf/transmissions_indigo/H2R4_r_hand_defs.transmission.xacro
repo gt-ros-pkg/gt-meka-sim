@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<robot>
+ 
+  <macro name="m3_r_palm_transmission">
+
+    <!-- Start Thumb -->
+    <transmission name="right_hand_t0">
+    <type>transmission_interface/SimpleTransmission</type>
+      <joint name="right_hand_j0">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="right_hand_a0">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="right_hand_t1">
+    <type>transmission_interface/SimpleTransmission</type>
+      <joint name="right_hand_j1">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="right_hand_a1">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="right_hand_t2">
+    <type>transmission_interface/SimpleTransmission</type>
+      <joint name="right_hand_j2">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="right_hand_a2">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <!-- Start Index Finger -->
+    <transmission name="right_hand_t3">
+    <type>transmission_interface/SimpleTransmission</type>
+      <joint name="right_hand_j3">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="right_hand_a3">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="right_hand_t4">
+    <type>transmission_interface/SimpleTransmission</type>
+      <joint name="right_hand_j4">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="right_hand_a4">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="right_hand_t5">
+    <type>transmission_interface/SimpleTransmission</type>
+      <joint name="right_hand_j5">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="right_hand_a5">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <!-- Start Ring Finger -->
+    <transmission name="right_hand_t6">
+    <type>transmission_interface/SimpleTransmission</type>
+      <joint name="right_hand_j6">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="right_hand_a6">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="right_hand_t7">
+    <type>transmission_interface/SimpleTransmission</type>
+      <joint name="right_hand_j7">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="right_hand_a7">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="right_hand_t8">
+    <type>transmission_interface/SimpleTransmission</type>
+      <joint name="right_hand_j8">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="right_hand_a8">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <!-- Start Pinky Finger -->
+    <transmission name="right_hand_t9">
+    <type>transmission_interface/SimpleTransmission</type>
+      <joint name="right_hand_j9">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="right_hand_a9">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="right_hand_t10">
+    <type>transmission_interface/SimpleTransmission</type>
+      <joint name="right_hand_j10">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="right_hand_a10">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="right_hand_t11">
+    <type>transmission_interface/SimpleTransmission</type>
+      <joint name="right_hand_j11">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="right_hand_a11">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+</macro>
+
+  <macro name="m3_r_hand_transmission">
+    <m3_r_palm_transmission/>
+  </macro>
+
+
+</robot>

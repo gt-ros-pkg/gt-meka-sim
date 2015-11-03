@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+
+  <property name="M_PI" value="3.1415926535897931" />
+ 
+
+  <macro name="m3_neck_transmission">
+    <transmission name="head_t0">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="head_j0">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>  
+      <actuator name="head_a0">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="head_t1">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="head_j1">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="head_a1">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+     
+    <transmission name="head_t2">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="head_j2">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint> 
+      <actuator name="head_a2">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+  
+    <transmission name="head_t3">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="head_j3">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint> 
+      <actuator name="head_a3">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+</macro>
+  <!-- Not using eye or ears right now - so incorrect --> 
+  <macro name="m3_eye_transmission">
+    <transmission name="head_t4">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="head_j4">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="head_a4">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="head_t5">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="head_j5">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint> 
+      <actuator name="head_a5">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="head_t6">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="head_j6">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="head_a6">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+  
+    <transmission name="head_t7">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="head_j7">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint> 
+      <actuator name="head_a7">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+   
+  <!-- Correct/Old names for when we actually control the eyelids -->
+  <!--transmission name="head_t7_rt_eyelid_top" type="pr2_mechanism_model/SimpleTransmission">
+      <actuator name="head_a7_rt_eyelid_top"/>
+      <joint name="head_j7_rt_eyelid_top"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission-->
+
+  <transmission name="head_t7_rt_eyelid_bottom" type="pr2_mechanism_model/SimpleTransmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="head_j7_rt_eyelid_bottom">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="head_a7_rt_eyelid_bottom">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+  </transmission>
+  
+  <transmission name="head_t7_lt_eyelid_top" type="pr2_mechanism_model/SimpleTransmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="head_j7_lt_eyelid_top">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="head_a7_lt_eyelid_top">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <transmission name="head_t7_lt_eyelid_bottom" type="pr2_mechanism_model/SimpleTransmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="head_j7_lt_eyelid_bottom">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="head_a7_lt_eyelid_bottom">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+  </transmission>
+</macro>
+  
+  <macro name="m3_ear_transmission">
+
+    <transmission name="head_t8">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="head_j8">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="head_a8">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="head_t9">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="head_j9">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="head_a9">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="head_t10">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="head_j10">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="head_a10">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="head_t11">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="head_j11">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="head_a11">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+</macro>
+
+  <macro name="m3_head_transmission">
+    <m3_neck_transmission/>
+    <m3_eye_transmission/>
+    <m3_ear_transmission/>
+  </macro>
+
+
+</robot>

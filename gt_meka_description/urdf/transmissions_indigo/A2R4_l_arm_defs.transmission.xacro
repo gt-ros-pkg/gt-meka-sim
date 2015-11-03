@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<robot>
+
+  <macro name="m3_l_shoulder_transmission" params="side parent reflect">
+
+    <!-- Shoulder pan -->
+    <transmission name="left_arm_t0">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="left_arm_j0">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="left_arm_a0">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <!-- Shoulder lift -->
+    <transmission name="left_arm_t1">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="left_arm_j1">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="left_arm_a1">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <!-- Upperarm roll: internal fixed attchment point for upper arm -->
+    <transmission name="left_arm_t2">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="left_arm_j2">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="left_arm_a2">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+  </macro>
+
+  <!-- ============================   Upper Arm   ============================ -->
+  <macro name="m3_l_upper_arm_transmission" params="side parent reflect">
+    <transmission name="left_arm_t3">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="left_arm_j3">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="left_arm_a3">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <!-- Elbow flex -->
+    <transmission name="left_arm_t4">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="left_arm_j4">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="left_arm_a4">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+  </macro>
+
+  <!-- ============================   Forearm   ============================ -->
+  <macro name="m3_l_forearm_transmission" params="side parent reflect">
+    <transmission name="left_arm_t5">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="left_arm_j5">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="left_arm_a5">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <!-- Wrist flex -->
+    <transmission name="left_arm_t6">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="left_arm_j6">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="left_arm_a6">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </macro>
+
+  <macro name="m3_l_arm_transmission" params="side parent reflect">
+    <m3_l_shoulder_transmission side="${side}" reflect="${reflect}" parent="${parent}"/>
+    <m3_l_upper_arm_transmission side="${side}" reflect="${reflect}" parent="bicep_LEFT" />
+    <m3_l_forearm_transmission side="${side}" reflect="${reflect}" parent="wrist_LEFT" />
+  </macro>
+
+</robot>
